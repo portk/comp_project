@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Map, Polygon , MapMarker } from 'react-kakao-maps-sdk';
+import { Map, Polygon , MapMarker , CustomOverlayMap } from 'react-kakao-maps-sdk';
 import sidoData from '../json/sig.json';
 import axios from 'axios';
 
@@ -8,6 +8,9 @@ function App() {
     const [path, setPath] = useState([]);
     const [markeron,SetMarkerOn] = useState([]);
     const [isOpen, setIsOpen] = useState([]);
+    const [savetour, setSaveTour] = useState();
+    const [maplevel , setMapLevel] = useState(12);
+    const [mapcenter, setMapcenter] = useState({ lat: 37.566826, lng: 126.9786567 });
 
     useEffect(()=>{
         getMap();
@@ -64,11 +67,11 @@ function App() {
     const toursearch = async () => {
         const baseurl = "http://apis.data.go.kr/B551011/KorService1"
         const endurl = "/areaBasedList1"
-        const key = ''
+        const key = 'QulxLcF6EoeMXVINILWtok1HzQlufS+hg5OTmKLhWB8NVUbCq1dlPj+p0t2z3SsywZ6IXBr8bAZkmV2UCn8uJw=='
         axios.get(baseurl+endurl,{
-            params:{ serviceKey : encodeURI(key), numOfRows:9999, MobileOS : 'ETC',contentTypeId : 12 , MobileApp :"jeogi", _type:"json"}
+            params:{ serviceKey : encodeURI(key), numOfRows:30, MobileOS : 'ETC',contentTypeId : 12 , MobileApp :"jeogi", _type:"json"}
         }).then((res) =>{
-            // console.log(res.data)
+            setSaveTour(res.data.response.body.items.item)
         })
     }
 
@@ -89,8 +92,12 @@ function App() {
 
     //Polygon 클릭 시 지역나오는 함수
     const polygonClick = (index) => {
+        setMapLevel(8)
+        setMapcenter({lat:sidoData.features[index].geometry.coordinates[0][0][1],lng:sidoData.features[index].geometry.coordinates[0][0][0]})
         console.log(sidoData.features[index])
     }
+
+
 
     
 
@@ -98,8 +105,8 @@ function App() {
         <div>
             <div className='hello' style={{ width: '100vw', height: '100vh' }}>
                 <Map
-                    center={{ lat: 37.566826, lng: 126.9786567 }}
-                    level={9}
+                    center={mapcenter}
+                    level={maplevel}
                     style={{ width: '100%', height: '100%' }}
                 >
                     {path.map((coordinates, index) => (
@@ -126,6 +133,19 @@ function App() {
                         >
                         </MapMarker>
                     ))}
+
+                    {savetour && savetour.map((i) => (
+                        <CustomOverlayMap
+                        position={{ lat: i.mapy, lng: i.mapx }}
+
+                    >
+                        <div className="label" style={{backgroundColor: "yellow"}}>
+                            <span>{i.title}</span>
+                        </div>
+                    </CustomOverlayMap>
+                    ))}
+                    
+
                 </Map>
             </div>
         </div>
