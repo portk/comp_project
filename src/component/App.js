@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Map, Polygon , MapMarker , CustomOverlayMap } from 'react-kakao-maps-sdk';
 import sidoData from '../json/sig.json';
 import axios from 'axios';
+import { queryAllByAltText } from '@testing-library/react';
 
 function App() {
     const [fillColor, setFillColor] = useState([]);
@@ -9,13 +10,15 @@ function App() {
     const [markeron,SetMarkerOn] = useState([]);
     const [isOpen, setIsOpen] = useState([]);
     const [savetour, setSaveTour] = useState();
-    const [maplevel , setMapLevel] = useState(12);
+    const [maplevel , setMapLevel] = useState(11);
     const [mapcenter, setMapcenter] = useState({ lat: 37.566826, lng: 126.9786567 });
 
     useEffect(()=>{
         getMap();
         toursearch();
     }, []);
+
+
     
     // 백엔드로부터 받은 지역별 혼잡도 데이터
     const congestionData = {
@@ -91,9 +94,9 @@ function App() {
 
 
     //Polygon 클릭 시 지역나오는 함수
-    const polygonClick = (index) => {
+    const polygonClick = (index,e) => {
         setMapLevel(8)
-        setMapcenter({lat:sidoData.features[index].geometry.coordinates[0][0][1],lng:sidoData.features[index].geometry.coordinates[0][0][0]})
+        setMapcenter({lat: e.latLng.Ma,lng: e.latLng.La})
         console.log(sidoData.features[index])
     }
 
@@ -108,6 +111,7 @@ function App() {
                     center={mapcenter}
                     level={maplevel}
                     style={{ width: '100%', height: '100%' }}
+                    onZoomChanged={()=>{setMapLevel()}}
                 >
                     {path.map((coordinates, index) => (
                         <Polygon
@@ -118,7 +122,7 @@ function App() {
                             strokeOpacity={0.8}
                             fillColor={fillColor[index]}
                             fillOpacity={0.7}
-                            onClick={()=>{polygonClick(index);}}
+                            onClick={(_,e)=>{polygonClick(index,e);}}
                         />
                     ))} 
 
