@@ -1,0 +1,38 @@
+.sidebar {
+    width: 20%;
+    height: 90vh;
+    min-width: 300px;
+    min-height: 600px;
+}
+
+.sidebarLogo {
+    width: 100%;
+    height: 10%;
+    padding: 0 5%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+.sidebarLogo img {
+    width: 65%;
+    height: 65%;
+}
+
+.sidebarContent {
+    width: 100%;
+    height: 90%;
+}
+
+.sidebarNavigation {
+    width: 100%;
+    height: 8%;
+}
+
+.sidebarCongestionTravel {
+    width: 100%;
+    height: 100%;
+}
+.sidebarBase {
+    width: 100%;
+    height: 100%;
+}
