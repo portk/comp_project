@@ -6,6 +6,7 @@
 .sidebarTravelChoice {
     width: 100%;
     height: 16%;
+    /* font-size: 14px; */
 }
 
 .sidebarTravelChoiceX {
@@ -31,16 +32,28 @@
     justify-content: center;
 }
 .sidebarTravelChoiceO svg {
-    margin-right: 5px;
+    margin-right: 8px;
 }
 
-.sidebarTravelChoice1 > *,
-.sidebarTravelChoice2 > *,
-.sidebarTravelChoice3 > * {
+.sidebarTravelChoice1Wrap,
+.sidebarTravelChoice2Wrap,
+.sidebarTravelChoice3Wrap {
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
-.sidebarTravelChoice2
+.sidebarTravelChoice1Wrap:hover svg {
+    fill: #F3B664 !important;
+}
+
+.sidebarTravelChoice2Wrap:hover svg {
+    fill: #F6D860 !important;
+}
+
+.sidebarTravelChoice3Wrap:hover svg {
+    fill: #64CCDA !important;
+}
 
 .sidebarTravelList {
     width: 100%;

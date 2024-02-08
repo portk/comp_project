@@ -1,9 +1,8 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import '../css/travel.css';
 import { Map, MapMarker, Polygon } from "react-kakao-maps-sdk";
-import locationInfo from '../json/locationInfo.json';
 import sig from '../json/sig.json';
-import axios from 'axios';
+import { Context } from '../context/Context';
 
 function Travel() {
     // polygon 그리기
@@ -14,79 +13,118 @@ function Travel() {
     const [position, setPosition] = useState({
         lat: 36.45,
         lng: 127.77
-    })
+    });
 
-    const[hi,setHi] = useState()
+    const [markers,setMarkers] = useState([]);
+
+    const [selectedPolygonIndex, setSelectedPolygonIndex] = useState(null);
+
+
+    //useContext를 이용해 sidebar에서 backend에서 통신한 값 받아오기 
+    const {setSigid,tourplace,festival,accommodation,sidebarclick} = useContext(Context);
 
     // polygon 클릭시 확대하고 색깔 바꾸는 함수
-    const polygonClick = (index,e,_) => {
-        setLevel(9)
-        setPosition({lat: e.latLng.Ma,lng: e.latLng.La})
-        if(_.Eb[0].fillColor==='blue') {
-            setLevel()
+    const polygonClick = (index, e,_) => {
+        setLevel(9);
+        setPosition({ lat: e.latLng.Ma, lng: e.latLng.La });
+        // 선택한 Polygon이 이미 선택되어 있는지 확인
+        if (selectedPolygonIndex === index) {
+            setLevel(12); // 확대 레벨 원래대로 복원
+            setSelectedPolygonIndex(null); // 선택 해제
+            setMarkers() //마커 초기화
+            setPosition({lat: 36.45,lng: 127.77}) //맵중앙으로 이동
+        } else {
+            setMarkers() //마커 초기화
+            setSelectedPolygonIndex(index); // 선택된 Polygon의 인덱스 업데이트
+            let sigid = sig.features[index].properties.SIG_CD;
+            setSigid(sigid);
         }
-        console.log(e)
-        // console.log(sig.features[index])
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         // polygon 그리는 함수
         const features = sig.features;
         const path1 = features.map(feature => (
             feature.geometry.coordinates.map(coords => (
                 coords.map(coordinate => ({
                     lat: coordinate[1],
-                    lng: coordinate[0]}))
+                    lng: coordinate[0]
+                }))
             ))
         ))
         setSigSwitch(path1);
     }, []);
-    
+
     // 지도 레벨 12로 초기화 하는 함수
-    const reset = ()=>{
+    const reset = () => {
         setLevel(12);
         setPosition({
             lat: 36.45,
             lng: 127.77
         });
+        setSelectedPolygonIndex(null); // 선택 해제
+        setMarkers(); //마커초기화
     }
 
-    // back에서 관광지 데이터 받아오는 함수
-    const travelData = (index)=>{
-        let sigid = sig.features[index].properties.SIG_CD
-        axios.post('http://192.168.0.53:8080/travelData', {
-            sigid : sigid
-        }).then((res)=>{
-            window.sessionStorage.setItem(
-                "tourPlace", JSON.stringify(res.data)
-            )
-            setHi(res.data)
-        })
-    }
+    useEffect(() => {
+        mapmark()
+    }, [sidebarclick, tourplace, festival, accommodation])
 
-    return(
-        <div>
-            <Map // 지도를 표시할 Container
-            center={
-                // 지도의 중심좌표
-                position
-            }
-            style={{
-                // 지도의 크기
-                width: "100%",
-                height: "90vh",
-            }}
-            level={level} // 지도의 확대 레벨
-            onZoomChanged={()=>{setLevel()}}
-            >
-                {hi && hi.map((i, index)=>(
+    const mapmark = () => {
+        let newmarker = []
+        if (sidebarclick === "1") {
+            newmarker =
+                tourplace.map((i, index) => (
                     <MapMarker // 마커를 생성합니다
                         key={index}
-                        position={{lat:i.lng,lng:i.lat}}// 마커가 표시될 위치입니다
-                        onClick={console.log(i.title)}
+                        position={{ lat: i.lng, lng: i.lat }}// 마커가 표시될 위치입니다
+                        clickable={true}
+                        onClick={() => { console.log(i) }}
                     />
-                ))}
+                ))
 
+        } else if (sidebarclick === "2") {
+            newmarker =
+                festival.map((i, index) => (
+                    <MapMarker // 마커를 생성합니다
+                        key={index}
+                        position={{ lat: i.lng, lng: i.lat }}// 마커가 표시될 위치입니다
+                        clickable={true}
+                        onClick={() => { console.log(i) }}
+                    />
+                ))
+
+        } else if (sidebarclick === "3") {
+            newmarker =
+                accommodation.map((i, index) => (
+                    <MapMarker // 마커를 생성합니다
+                        key={index}
+                        position={{ lat: i.lng, lng: i.lat }}// 마커가 표시될 위치입니다
+                        clickable={true}
+                        onClick={() => { console.log(i) }}
+                    />
+                ))
+
+        }
+        setMarkers(newmarker)
+    }
+
+    return (
+        <div>
+            <Map // 지도를 표시할 Container
+                center={
+                    // 지도의 중심좌표
+                    position
+                }
+                style={{
+                    // 지도의 크기
+                    width: "100%",
+                    height: "90vh",
+                }}
+                level={level} // 지도의 확대 레벨
+                onZoomChanged={() => { setLevel() }}
+            >
+                {markers}
                 {/* polygon 그리기 */}
                 {sigSwitch.map((coordinates, index) => (
                     <Polygon
@@ -95,41 +133,28 @@ function Travel() {
                         strokeWeight={2}
                         strokeColor="#004c80"
                         strokeOpacity={0.8}
-                        fillColor={'#fff'}
+                        fillColor={selectedPolygonIndex === index ? 'blue' : '#fff'} // 선택된 Polygon만 파란색
                         fillOpacity={0.7}
-                        onClick={(_,e)=>{
-                            if(_.Eb[0].fillColor==='blue') {
-                                _.setOptions({fillColor:'#fff'})
-                            } else {
-                                polygonClick(index,e,_);
-                                travelData(index);
-                                _.setOptions({fillColor:'blue'})
+                        onClick={(_,e) => polygonClick(index,e)}
+                        onMouseover={(e) => {
+                            if (selectedPolygonIndex !== index) {
+                                e.setOptions({ fillColor: 'red' });
                             }
                         }}
-                        onMouseover={(e)=>{
-                            if(e.Eb[0].fillColor==='blue') {
-                                e.setOptions({fillColor:'blue'})
-                            } else {
-                                e.setOptions({fillColor:'red'});
-                            }
-                        }}
-                        onMouseout={(e)=>{
-                            if(e.Eb[0].fillColor==='blue') {
-                                e.setOptions({fillColor:'blue'})
-                            } else if(e.Eb[0].fillColor==='red') {
-                                e.setOptions({fillColor:'#fff'})
+                        onMouseout={(e) => {
+                            if (selectedPolygonIndex !== index) {
+                                e.setOptions({ fillColor: '#fff' });
                             }
                         }}
                     />
                 ))}
                 <span className='travelMapLevelReset' onClick={reset} title='지도 전체 보기'>
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Bold" x="0px" y="0px" viewBox="0 0 512 512" style={{enableBackground:'new 0 0 512 512'}} xmlSpace="preserve" width="35" height="35" fill='white'>
-                        <path d="M288,192H160c-17.673,0-32,14.327-32,32s14.327,32,32,32h128c17.673,0,32-14.327,32-32S305.673,192,288,192z"/>
-                        <path d="M502.661,457.569l-99.046-99.067c74.18-99.06,54.01-239.499-45.05-313.678S119.067-9.187,44.887,89.873  s-54.01,239.499,45.05,313.678c79.587,59.597,188.929,59.623,268.544,0.063l99.088,99.088c12.452,12.452,32.64,12.452,45.092,0  c12.452-12.452,12.452-32.64,0-45.092L502.661,457.569z M225.116,384.49c-88.02,0-159.374-71.354-159.374-159.374  S137.097,65.742,225.116,65.742s159.374,71.354,159.374,159.374C384.397,313.097,313.098,384.397,225.116,384.49z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Bold" x="0px" y="0px" viewBox="0 0 512 512" style={{ enableBackground: 'new 0 0 512 512' }} xmlSpace="preserve" width="35" height="35" fill='white'>
+                        <path d="M288,192H160c-17.673,0-32,14.327-32,32s14.327,32,32,32h128c17.673,0,32-14.327,32-32S305.673,192,288,192z" />
+                        <path d="M502.661,457.569l-99.046-99.067c74.18-99.06,54.01-239.499-45.05-313.678S119.067-9.187,44.887,89.873  s-54.01,239.499,45.05,313.678c79.587,59.597,188.929,59.623,268.544,0.063l99.088,99.088c12.452,12.452,32.64,12.452,45.092,0  c12.452-12.452,12.452-32.64,0-45.092L502.661,457.569z M225.116,384.49c-88.02,0-159.374-71.354-159.374-159.374  S137.097,65.742,225.116,65.742s159.374,71.354,159.374,159.374C384.397,313.097,313.098,384.397,225.116,384.49z" />
                     </svg>
                 </span>
             </Map>
-            
         </div>
     )
 }
