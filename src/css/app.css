@@ -1,8 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gasoek+One&family=Gowun+Dodum&family=Nanum+Gothic&family=Single+Day&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gasoek+One&family=Gowun+Dodum&family=Nanum+Gothic:wght@400;800&family=Single+Day&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gasoek+One&family=Gowun+Dodum&family=Nanum+Gothic:wght@400;800&family=Single+Day&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gasoek+One&family=Gowun+Dodum&family=Nanum+Gothic:wght@400;800&family=Single+Day&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gasoek+One&family=Gowun+Dodum&family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@900&family=Single+Day&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gasoek+One&family=Gowun+Dodum&family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@900&family=Single+Day&display=swap');
 
 * {
@@ -17,6 +12,6 @@ p {
     margin: 0;
 }
 
-.AppSidebarContentWrap {
+.appSidebarContentWrap {
     display: flex;
 }

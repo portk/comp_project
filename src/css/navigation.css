@@ -1,10 +1,10 @@
 .navigation {
-    width: 40%;
+    width: 60%;
     height: 100%;
     display: flex;
 }
 .navigation svg {
-    margin-right: 5px;
+    margin-right: 10px;
 }
 .navigation p {
     font-size: 18px;
@@ -23,7 +23,7 @@
     cursor: pointer;
 }
 .navigationCongestionButton div:hover svg {
-    fill: pink !important;
+    fill: #F78CA2 !important;
 }
 
 .navigationTravelButton {
@@ -38,5 +38,5 @@
     align-items: center;
 }
 .navigationTravelButton div:hover svg {
-    fill: green !important;
+    fill: #9FBB73 !important;
 }

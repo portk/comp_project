@@ -7,7 +7,7 @@ function Navigation(props) {
         const navigationCongestionButtonSvg = document.querySelector('.navigationCongestionButton svg');
         const navigationTravelButtonSvg = document.querySelector('.navigationTravelButton svg');
 
-        navigationCongestionButtonSvg.style.fill = 'pink';
+        navigationCongestionButtonSvg.style.fill = '#F78CA2';
         navigationTravelButtonSvg.style.fill = 'black';
         props.setTestState('1');
     }
@@ -15,7 +15,7 @@ function Navigation(props) {
         const navigationTravelButtonSvg = document.querySelector('.navigationTravelButton svg');
         const navigationCongestionButtonSvg = document.querySelector('.navigationCongestionButton svg');
     
-        navigationTravelButtonSvg.style.fill = 'green';
+        navigationTravelButtonSvg.style.fill = '#9FBB73';
         navigationCongestionButtonSvg.style.fill = 'black';
         props.setTestState('2');
     }

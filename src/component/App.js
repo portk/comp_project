@@ -3,28 +3,34 @@ import Content from './Content';
 import '../css/app.css';
 import { useState } from 'react';
 import Header from './Header';
-import { TourContext } from '../context/Tourcontext';
-import {React} from 'react'
+import DataOriginModal from './DataOriginModal';
+import { Context } from '../context/Context';
 
 function App() {
     const [testState, setTestState] = useState();
+
+    const [context, setContext] = useState();
+
+    const [sidebarOpenClose, setSidebarOpenClose] = useState('1');
 
     const [sigid,setSigid] = useState();
     const [tourplace,setTourPlace] = useState();
     const [festival,setFestival] = useState();
     const [accommodation, setAccommodation] = useState();
     const [sidebarclick, setSidebarClick] = useState();
+    const [lst, setLst] = useState();
 
     return(
-        <TourContext.Provider value={{sigid,setSigid,tourplace,setTourPlace,festival,setFestival,accommodation,setAccommodation,sidebarclick,setSidebarClick}}>
+        <Context.Provider value={{context, setContext, sidebarOpenClose, setSidebarOpenClose, sigid, setSigid,tourplace,setTourPlace,festival,setFestival,accommodation,setAccommodation,sidebarclick,setSidebarClick,lst,setLst}}>
             <div className='app'>
                 <Header testState={testState} setTestState={setTestState}/>
-                <div className='AppSidebarContentWrap'>
+                <DataOriginModal/>
+                <div className='appSidebarContentWrap'>
                     <Sidebar testState={testState} setTestState={setTestState}/>
                     <Content testState={testState} setTestState={setTestState}/>
                 </div>
             </div>
-        </TourContext.Provider>
+        </Context.Provider>
     )
 }
 
