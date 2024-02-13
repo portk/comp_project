@@ -21,7 +21,7 @@ function Travel() {
 
 
     //useContext를 이용해 sidebar에서 backend에서 통신한 값 받아오기 
-    const {setSigid,tourplace,festival,accommodation,sidebarclick,lst,setLst,setTourPlace,setFestival,setAccommodation} = useContext(Context);
+    const {setSigid,tourplace,festival,accommodation,sidebarclick,lst,setLst,setTourPlace,setFestival,setAccommodation,setInfoSidebarOpenClose} = useContext(Context);
 
     // polygon 클릭시 확대하고 색깔 바꾸는 함수
     const polygonClick = (index, e,_) => {
@@ -69,6 +69,7 @@ function Travel() {
         setSelectedPolygonIndex(null); // 선택 해제
         setMarkers(); //마커초기화
         setLst();
+        setInfoSidebarOpenClose();
     }
 
     useEffect(() => {
@@ -84,7 +85,7 @@ function Travel() {
                         key={index}
                         position={{ lat: i.lng, lng: i.lat }}// 마커가 표시될 위치입니다
                         clickable={true}
-                        onClick={() => { console.log(i) }}
+                        onClick={() => { console.log(i); setInfoSidebarOpenClose("1"); setLst(i); }}
                     />
                 ))
 
@@ -95,7 +96,7 @@ function Travel() {
                         key={index}
                         position={{ lat: i.lng, lng: i.lat }}// 마커가 표시될 위치입니다
                         clickable={true}
-                        onClick={() => { console.log(i) }}
+                        onClick={() => { console.log(i); setInfoSidebarOpenClose("1"); setLst(i); }}
                     />
                 ))
 
@@ -106,7 +107,7 @@ function Travel() {
                         key={index}
                         position={{ lat: i.lng, lng: i.lat }}// 마커가 표시될 위치입니다
                         clickable={true}
-                        onClick={() => { console.log(i) }}
+                        onClick={() => { console.log(i); setInfoSidebarOpenClose("1"); setLst(i); }}
                     />
                 ))
 

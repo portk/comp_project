@@ -3,7 +3,7 @@ import { Context } from '../context/Context';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 function SidebarTravel() {
-    const {sigid,setTourPlace,setFestival,setAccommodation,setSidebarClick,sidebarclick,tourplace,festival,accommodation,setLst} = useContext(Context)
+    const {sigid,setTourPlace,setFestival,setAccommodation,setSidebarClick,sidebarclick,tourplace,festival,accommodation,setLst,setInfoSidebarOpenClose} = useContext(Context)
 
     const tourdata = () => {
         axios.post('http://192.168.0.53:8080/travelData', {
@@ -92,17 +92,17 @@ function SidebarTravel() {
             </div>
             <div className='sidebarTravelList'>
                 {sidebarclick==="1" && tourplace && tourplace.map((lst)=>(
-                    <ul key={lst.index} onClick={()=>{setLst(lst)}}>
+                    <ul key={lst.index} onClick={()=>{setLst(lst);setInfoSidebarOpenClose("1")}}>
                         <div>{lst.title}</div>
                     </ul>
                 ))}
                 {sidebarclick==="2" && festival && festival.map((lst)=>(
-                    <ul key={lst.index} onClick={()=>{setLst(lst)}}>
+                    <ul key={lst.index} onClick={()=>{setLst(lst);setInfoSidebarOpenClose("1")}}>
                         <div>{lst.title}</div>
                     </ul>
                 ))}
                 {sidebarclick==="3" && accommodation && accommodation.map((lst)=>(
-                    <ul key={lst.index} onClick={()=>{setLst(lst)}}>
+                    <ul key={lst.index} onClick={()=>{setLst(lst);setInfoSidebarOpenClose("1")}}>
                         <div>{lst.title}</div>
                     </ul>
                 ))}
