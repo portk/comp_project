@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import '../css/travel.css';
-import { Map, MapMarker, Polygon } from "react-kakao-maps-sdk";
+import { Map, MapMarker, Polygon, CustomOverlayMap } from "react-kakao-maps-sdk";
 import sig from '../json/sig.json';
 import { Context } from '../context/Context';
 
@@ -21,7 +21,7 @@ function Travel() {
 
 
     //useContext를 이용해 sidebar에서 backend에서 통신한 값 받아오기 
-    const {setSigid,tourplace,festival,accommodation,sidebarclick} = useContext(Context);
+    const {setSigid,tourplace,festival,accommodation,sidebarclick,lst,setLst,setTourPlace,setFestival,setAccommodation} = useContext(Context);
 
     // polygon 클릭시 확대하고 색깔 바꾸는 함수
     const polygonClick = (index, e,_) => {
@@ -38,6 +38,10 @@ function Travel() {
             setSelectedPolygonIndex(index); // 선택된 Polygon의 인덱스 업데이트
             let sigid = sig.features[index].properties.SIG_CD;
             setSigid(sigid);
+            setLst();
+            setTourPlace();
+            setFestival();
+            setAccommodation();
         }
     }
 
@@ -64,6 +68,7 @@ function Travel() {
         });
         setSelectedPolygonIndex(null); // 선택 해제
         setMarkers(); //마커초기화
+        setLst();
     }
 
     useEffect(() => {
@@ -72,7 +77,7 @@ function Travel() {
 
     const mapmark = () => {
         let newmarker = []
-        if (sidebarclick === "1") {
+        if (sidebarclick === "1" && tourplace) {
             newmarker =
                 tourplace.map((i, index) => (
                     <MapMarker // 마커를 생성합니다
@@ -83,7 +88,7 @@ function Travel() {
                     />
                 ))
 
-        } else if (sidebarclick === "2") {
+        } else if (sidebarclick === "2" && festival) {
             newmarker =
                 festival.map((i, index) => (
                     <MapMarker // 마커를 생성합니다
@@ -94,7 +99,7 @@ function Travel() {
                     />
                 ))
 
-        } else if (sidebarclick === "3") {
+        } else if (sidebarclick === "3" && accommodation) {
             newmarker =
                 accommodation.map((i, index) => (
                     <MapMarker // 마커를 생성합니다
@@ -125,7 +130,7 @@ function Travel() {
                 onZoomChanged={() => { setLevel() }}
             >
                 {markers}
-                {/* polygon 그리기 */}
+
                 {sigSwitch.map((coordinates, index) => (
                     <Polygon
                         key={index}
@@ -148,6 +153,39 @@ function Travel() {
                         }}
                     />
                 ))}
+                {sidebarclick==="1" && lst &&
+                <CustomOverlayMap
+                    position={{
+                        lat:lst.lng,
+                        lng:lst.lat
+                    }}
+                    yAnchor={3.5}
+                >
+                    <div style={{backgroundColor:"white"}}>{lst.title}</div>
+                </CustomOverlayMap>
+                }
+                {sidebarclick==="2" && lst &&
+                <CustomOverlayMap
+                    position={{
+                        lat:lst.lng,
+                        lng:lst.lat
+                    }}
+                    yAnchor={3.5}
+                >
+                    <div style={{backgroundColor:"white"}}>{lst.title}</div>
+                </CustomOverlayMap>
+                }
+                {sidebarclick==="3" && lst &&
+                <CustomOverlayMap
+                    position={{
+                        lat:lst.lng,
+                        lng:lst.lat
+                    }}
+                    yAnchor={3.2}
+                >
+                    <div style={{backgroundColor:"white"}}>{lst.title}</div>
+                </CustomOverlayMap>
+                }
                 <span className='travelMapLevelReset' onClick={reset} title='지도 전체 보기'>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Bold" x="0px" y="0px" viewBox="0 0 512 512" style={{ enableBackground: 'new 0 0 512 512' }} xmlSpace="preserve" width="35" height="35" fill='white'>
                         <path d="M288,192H160c-17.673,0-32,14.327-32,32s14.327,32,32,32h128c17.673,0,32-14.327,32-32S305.673,192,288,192z" />

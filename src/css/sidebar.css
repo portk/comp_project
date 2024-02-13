@@ -3,9 +3,9 @@
     height: 90vh;
     min-width: 300px;
     min-height: 600px;
-    z-index: 19;
+    z-index: 20;
     position: relative;
-    box-shadow: 3px 0 5px -3px rgb(221, 221, 211, 0.5);
+    box-shadow: 5px 0 5px -3px rgb(221, 221, 211, 0.5);
 }
 
 .sidebarLogo {
@@ -40,17 +40,3 @@
     height: 100%;
 }
 
-.sidebarOpenClose {
-    width: fit-content;
-    height: 5%;
-    display: flex;
-    align-items: center;
-    background-color: white;
-    position: absolute;
-    top: 45%;
-    right: -25px;
-    z-index: 19;
-    box-shadow: 3px 3px 5px -3px rgb(221, 221, 211, 0.5);
-    border-radius: 5px;
-    cursor: pointer;
-}

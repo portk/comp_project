@@ -1,12 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import '../css/content.css';
 import Congestion from './Congestion';
 import Navigation from './Navigation';
 import Travel from './Travel';
+import InfoSidebar from './InfoSidebar';
 
 function Content(props) {
     const content = [];
     const contentBase = document.querySelector('.contentBase');
+
+
 
     if(props.testState === '1') {
         contentBase.style.display = 'none';
@@ -22,6 +25,7 @@ function Content(props) {
 
     return(
         <div className='content'>
+            <InfoSidebar/>
             <div className='contentBase'>
                 <Congestion/>
             </div>

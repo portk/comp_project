@@ -1,0 +1,21 @@
+.infoSidebar {
+    width: 20%;
+    height: 90vh;
+    z-index: 19;
+    position: absolute;
+    background-color: white;
+    box-shadow: 5px 0 5px -3px rgb(221, 221, 211, 0.5);
+}
+
+.infoSidebarCloseWrap {
+    height: 5%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 0 1%;
+}
+
+.infoSidebarClose {
+    display: flex;
+    align-items: center;
+}

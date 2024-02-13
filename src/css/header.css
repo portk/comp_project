@@ -15,6 +15,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: xx-large;
+    font-weight: bold;
+}
+.headerLogo svg {
+    margin-right: 2.5%;
 }
 .headerLogo img {
     width: 50%;
