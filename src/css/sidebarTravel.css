@@ -119,25 +119,36 @@
     height: 100%;
     display: none;
 }
-
-.sidebarTravelListO1Ul {
+.sidebarTravelListO ul {
     width: 100%;
     height: 20%;
 }
 
-.sidebarTravelListO1Div {
+/* .sidebarTravelListO1Ul {
+    width: 100%;
+    height: 20%;
+} */
+
+.sidebarTravelListO1Div,
+.sidebarTravelListO2Div,
+.sidebarTravelListO3Div {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
 }
-.sidebarTravelListO1Div img {
+.sidebarTravelListO1Div img,
+.sidebarTravelListO2Div img,
+.sidebarTravelListO3Div img {
     width: 35%;
     height: 85%;
     border-radius: 30px;
+    cursor: pointer;
 }
 
-.sidebarTravelListO1DivInfo {
+.sidebarTravelListO1DivInfo,
+.sidebarTravelListO2DivInfo,
+.sidebarTravelListO3DivInfo {
     width: 65%;
     height: 85%;
     padding: 0 5%;
@@ -146,16 +157,40 @@
     justify-content: center;
     opacity: 0.8;
 }
-.sidebarTravelListO1DivInfo > * {
+.sidebarTravelListO1DivInfo > *,
+.sidebarTravelListO2DivInfo > *,
+.sidebarTravelListO3DivInfo > * {
     margin: 2% 0;
 }
 
-.sidebarTravelListO1DivInfoTitle {
+.sidebarTravelListO1DivInfoTitle,
+.sidebarTravelListO2DivInfoTitle,
+.sidebarTravelListO3DivInfoTitle {
     font-weight: bold;
     font-size: 17px;
 }
+.sidebarTravelListO1DivInfoTitle p,
+.sidebarTravelListO2DivInfoTitle p,
+.sidebarTravelListO3DivInfoTitle p {
+    width: fit-content;
+    cursor: pointer;
+}
 
 .sidebarTravelListO1DivInfoAddress,
-.sidebarTravelListO1DivInfoTel {
+.sidebarTravelListO1DivInfoTel,
+.sidebarTravelListO2DivInfoAddress,
+.sidebarTravelListO2DivInfoTel,
+.sidebarTravelListO3DivInfoAddress,
+.sidebarTravelListO3DivInfoTel {
     font-size: 14px;
+    display: flex;
+}
+
+.sidebarTravelListO1DivInfoAddressSvgWrap, 
+.sidebarTravelListO1DivInfoTelSvgWrap,
+.sidebarTravelListO2DivInfoAddressSvgWrap, 
+.sidebarTravelListO2DivInfoTelSvgWrap,
+.sidebarTravelListO3DivInfoAddressSvgWrap, 
+.sidebarTravelListO3DivInfoTelSvgWrap {
+    padding: 1% 3% 0 0;
 }

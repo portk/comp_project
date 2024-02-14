@@ -1,5 +1,5 @@
 .infoSidebar {
-    width: 20%;
+    width: 22%;
     height: 90vh;
     display: none;
     z-index: 19;
@@ -25,8 +25,49 @@
 .infoSidebarInfo {
     width: 100%;
     height: 95%;
+    overflow: auto;
 }
 .infoSidebarInfo img {
     width: 100%;
-    height: 45%;
+    height: 40%;
+}
+
+.infoSidebarInfoDiv {
+    padding: 5%;
+    opacity: 0.8;
+}
+
+.infoSidebarInfoDivTitle {
+    margin-bottom: 5%;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.infoSidebarInfoDivATDP {
+    margin-bottom: 5%;
+    font-size: 14px;
+}
+.infoSidebarInfoDivATDP > * {
+    margin-bottom: 2%;
+}
+
+.infoSidebarInfoDivAddress,
+.infoSidebarInfoDivTel {
+    display: flex;
+}
+
+.infoSidebarInfoDivAddressSvg,
+.infoSidebarInfoDivTelSvg {
+    padding: 0.5% 1.5% 0 0;
+}
+
+.infoSidebarInfoDivParking {
+    margin-bottom: 0;
+}
+
+.infoSidebarInfoDivStory {
+    font-size: 15px;
+}
+.infoSidebarInfoDivStory p {
+    white-space: pre-line;
 }

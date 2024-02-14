@@ -142,7 +142,7 @@ function Travel() {
                         key={index}
                         path={coordinates}
                         strokeWeight={2}
-                        strokeColor="#004c80"
+                        strokeColor="rgb(0, 0, 0, 0.5)"
                         strokeOpacity={0.8}
                         fillColor={selectedPolygonIndex === index ? 'blue' : '#fff'} // 선택된 Polygon만 파란색
                         fillOpacity={0.7}

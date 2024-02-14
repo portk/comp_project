@@ -1,0 +1,20 @@
+.logo {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #9FBB73;
+}
+
+.logoWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: xx-large;
+    font-weight: bold;
+    color: white;
+}
+.logoWrap svg {
+    margin-right: 4%;
+}
