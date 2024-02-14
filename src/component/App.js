@@ -11,7 +11,7 @@ function App() {
 
     const [context, setContext] = useState();
 
-    const [sidebarClose, setSidebarClose] = useState('1');
+    const [infoSidebarOpenClose, setInfoSidebarOpenClose] = useState();
 
     const [sigid,setSigid] = useState();
     const [tourplace,setTourPlace] = useState();
@@ -20,8 +20,10 @@ function App() {
     const [sidebarclick, setSidebarClick] = useState();
     const [lst, setLst] = useState();
 
+    const [sidebarTravelChoice, setSidebarTravelChoice] = useState();
+
     return(
-        <Context.Provider value={{context, setContext, sidebarClose, setSidebarClose, sigid, setSigid,tourplace,setTourPlace,festival,setFestival,accommodation,setAccommodation,sidebarclick,setSidebarClick,lst,setLst}}>
+        <Context.Provider value={{context, setContext, infoSidebarOpenClose, setInfoSidebarOpenClose, sigid, setSigid,tourplace,setTourPlace,festival,setFestival,accommodation,setAccommodation,sidebarclick,setSidebarClick,lst,setLst,sidebarTravelChoice,setSidebarTravelChoice}}>
             <div className='app'>
                 <Header testState={testState} setTestState={setTestState}/>
                 <DataOriginModal/>

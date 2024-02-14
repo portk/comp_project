@@ -21,7 +21,7 @@ function Travel() {
 
 
     //useContext를 이용해 sidebar에서 backend에서 통신한 값 받아오기 
-    const {setSigid,tourplace,festival,accommodation,sidebarclick,lst,setLst,setTourPlace,setFestival,setAccommodation} = useContext(Context);
+    const {setSigid,tourplace,festival,accommodation,sidebarclick,setSidebarClick,lst,setLst,setTourPlace,setFestival,setAccommodation,setInfoSidebarOpenClose,setSidebarTravelChoice} = useContext(Context);
 
     // polygon 클릭시 확대하고 색깔 바꾸는 함수
     const polygonClick = (index, e,_) => {
@@ -33,6 +33,9 @@ function Travel() {
             setSelectedPolygonIndex(null); // 선택 해제
             setMarkers() //마커 초기화
             setPosition({lat: 36.45,lng: 127.77}) //맵중앙으로 이동
+            setSidebarTravelChoice('x');
+            setSidebarClick();
+            setInfoSidebarOpenClose();
         } else {
             setMarkers() //마커 초기화
             setSelectedPolygonIndex(index); // 선택된 Polygon의 인덱스 업데이트
@@ -42,6 +45,9 @@ function Travel() {
             setTourPlace();
             setFestival();
             setAccommodation();
+            setSidebarTravelChoice('o');
+            setSidebarClick();
+            setInfoSidebarOpenClose();
         }
     }
 
@@ -69,6 +75,7 @@ function Travel() {
         setSelectedPolygonIndex(null); // 선택 해제
         setMarkers(); //마커초기화
         setLst();
+        setInfoSidebarOpenClose();
     }
 
     useEffect(() => {
@@ -84,7 +91,7 @@ function Travel() {
                         key={index}
                         position={{ lat: i.lng, lng: i.lat }}// 마커가 표시될 위치입니다
                         clickable={true}
-                        onClick={() => { console.log(i) }}
+                        onClick={() => { console.log(i); setInfoSidebarOpenClose("1"); setLst(i);}}
                     />
                 ))
 
@@ -95,7 +102,7 @@ function Travel() {
                         key={index}
                         position={{ lat: i.lng, lng: i.lat }}// 마커가 표시될 위치입니다
                         clickable={true}
-                        onClick={() => { console.log(i) }}
+                        onClick={() => { console.log(i); setInfoSidebarOpenClose("1"); setLst(i); }}
                     />
                 ))
 
@@ -106,10 +113,9 @@ function Travel() {
                         key={index}
                         position={{ lat: i.lng, lng: i.lat }}// 마커가 표시될 위치입니다
                         clickable={true}
-                        onClick={() => { console.log(i) }}
+                        onClick={() => { console.log(i); setInfoSidebarOpenClose("1"); setLst(i);}}
                     />
                 ))
-
         }
         setMarkers(newmarker)
     }
@@ -159,7 +165,8 @@ function Travel() {
                         lat:lst.lng,
                         lng:lst.lat
                     }}
-                    yAnchor={3.5}
+                    // xAnchor={}
+                    yAnchor={3}
                 >
                     <div style={{backgroundColor:"white"}}>{lst.title}</div>
                 </CustomOverlayMap>
@@ -170,7 +177,8 @@ function Travel() {
                         lat:lst.lng,
                         lng:lst.lat
                     }}
-                    yAnchor={3.5}
+                    xAnchor={0}
+                    yAnchor={3}
                 >
                     <div style={{backgroundColor:"white"}}>{lst.title}</div>
                 </CustomOverlayMap>
@@ -181,7 +189,8 @@ function Travel() {
                         lat:lst.lng,
                         lng:lst.lat
                     }}
-                    yAnchor={3.2}
+                    xAnchor={0}
+                    yAnchor={3}
                 >
                     <div style={{backgroundColor:"white"}}>{lst.title}</div>
                 </CustomOverlayMap>
