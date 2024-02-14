@@ -2,7 +2,7 @@
     width: 100%;
     height: 10vh;
     display: grid;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 20% 70% 10%;
     justify-content: space-between;
     z-index: 20;
     position: relative;
@@ -17,9 +17,10 @@
     align-items: center;
     font-size: xx-large;
     font-weight: bold;
+    opacity: 0.8;
 }
 .headerLogo svg {
-    margin-right: 2.5%;
+    margin-right: 4%;
 }
 .headerLogo img {
     width: 50%;
@@ -37,7 +38,7 @@
     display: flex;
     align-items: center;
     justify-content: right;
-    padding: 0 5%;
+    padding: 0 10%;
 }
 
 .headerDataOrigin svg {

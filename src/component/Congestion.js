@@ -7,7 +7,7 @@ import sig from '../json/sig.json';
 function Congestion() {
     const [locationInfoSwitch, setLocationSwitch] = useState([]); // 전국 톨게이트 cctv 마커
     const [sigSwitch, setSigSwitch] = useState([]); // polygon 그리기
-    
+    const [fillColor, setFillColor] = useState([]);
     useEffect(() => {
         // // 전국 톨게이트 cctv 마커 찍는 함수
         // const list = locationInfo.list;
@@ -29,7 +29,36 @@ function Congestion() {
             ))
         ))
         setSigSwitch(path1);
+        const colors = features.map(feature => getColor(feature.properties.SIG_CD));
+        setFillColor(colors);
     }, []);
+
+    const congestionData = {
+        "47230": "1",
+        "47250": "2",
+        "47210": "3",
+        "47190": "4",
+        "47170": "5"
+    };
+
+    const getColor = (key) => {
+        const congestionLevel = congestionData[key];
+        
+        // 혼잡도에 따라 색상 설정
+        if (congestionLevel === "1") {
+            return "green";
+        } else if (congestionLevel === "2") {
+            return "lightgreen";
+        } else if (congestionLevel === "3") {
+            return "yellow";
+        } else if (congestionLevel === "4") {
+            return "orange";
+        } else if (congestionLevel === "5") {
+            return "red";
+        } else {
+            return "#fff";
+        }
+    };
 
     return(
         <Map // 지도를 표시할 Container
@@ -60,7 +89,7 @@ function Congestion() {
                     strokeWeight={2}
                     strokeColor="#004c80"
                     strokeOpacity={0.8}
-                    fillColor={'#fff'}
+                    fillColor={fillColor[index]}
                     fillOpacity={0.7}
                 />
             ))} 
