@@ -1,6 +1,6 @@
 .infoSidebar {
     width: 22%;
-    height: 95vh;
+    height: 93vh;
     display: none;
     z-index: 19;
     position: absolute;
@@ -9,7 +9,7 @@
 }
 
 .infoSidebarCloseWrap {
-    height: 5%;
+    height: 4%;
     display: flex;
     justify-content: end;
     align-items: center;
@@ -24,7 +24,7 @@
 
 .infoSidebarInfo {
     width: 100%;
-    height: 95%;
+    height: 96%;
     overflow: auto;
 }
 .infoSidebarInfo img {
@@ -33,22 +33,22 @@
 }
 
 .infoSidebarInfoDiv {
-    padding: 5%;
+    padding: 8%;
     opacity: 0.8;
 }
 
 .infoSidebarInfoDivTitle {
-    margin-bottom: 5%;
-    font-size: 25px;
+    margin-bottom: 10%;
+    font-size: 20px;
     font-weight: bold;
 }
 
 .infoSidebarInfoDivWrapWrap {
-    margin-bottom: 5%;
+    margin-bottom: 10%;
     font-size: 14px;
 }
 .infoSidebarInfoDivWrapWrap > * {
-    margin-bottom: 2%;
+    margin-bottom: 3%;
 }
 
 .infoSidebarInfoDivAddress,
@@ -66,13 +66,9 @@
 .infoSidebarInfoDivParkingSvg,
 .infoSidebarInfoDivStartEndSvg,
 .infoSidebarInfoDivRoomsSvg {
-    padding: 0.5% 1.5% 0 0;
-}
-
-.infoSidebarInfoDivParking {
-    margin-bottom: 0;
+    padding: 0.5% 2% 0 0;
 }
 
 .infoSidebarInfoDivStory {
-    font-size: 15px;
+    font-size: 14px;
 }

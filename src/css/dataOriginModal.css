@@ -1,11 +1,11 @@
 .dataOriginModal {
-    width: 10.1%;
-    height: 8%;
+    width: 12%;
+    height: 10%;
     background-color: white;
-    z-index: 20;
+    z-index: 21;
     position: absolute;
-    right: 32px;
-    top: 40px;
+    right: 22px;
+    top: 32px;
     padding: 0.5%;
     font-size: 11px;
     display: flex;

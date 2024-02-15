@@ -3,6 +3,7 @@ import '../css/travel.css';
 import { Map, MapMarker, Polygon, CustomOverlayMap } from "react-kakao-maps-sdk";
 import sig from '../json/sig.json';
 import { Context } from '../context/Context';
+import axios from 'axios';
 
 function Travel() {
     // polygon 그리기
@@ -18,6 +19,10 @@ function Travel() {
     const [markers,setMarkers] = useState([]);
 
     const [selectedPolygonIndex, setSelectedPolygonIndex] = useState(null);
+
+    const [fillColor, setFillColor] = useState([]);
+
+    const [congestionData, setCongestionData] = useState();
 
 
     //useContext를 이용해 sidebar에서 backend에서 통신한 값 받아오기 
@@ -50,6 +55,16 @@ function Travel() {
             setInfoSidebarOpenClose();
         }
     }
+
+    useEffect(() => {
+        congestion();
+    },[]);
+
+    useEffect(() => {
+        const features = sig.features;
+        const colors = features.map(feature => getColor(feature.properties.SIG_CD));
+        setFillColor(colors);
+    },[congestionData])
 
     useEffect(() => {
         // polygon 그리는 함수
@@ -91,7 +106,7 @@ function Travel() {
                         key={index}
                         position={{ lat: i.lng, lng: i.lat }}// 마커가 표시될 위치입니다
                         clickable={true}
-                        onClick={() => { console.log(i); setInfoSidebarOpenClose("1"); setLst(i);}}
+                        onClick={() => { setInfoSidebarOpenClose("1"); setLst(i);}}
                     />
                 ))
 
@@ -102,7 +117,7 @@ function Travel() {
                         key={index}
                         position={{ lat: i.lng, lng: i.lat }}// 마커가 표시될 위치입니다
                         clickable={true}
-                        onClick={() => { console.log(i); setInfoSidebarOpenClose("1"); setLst(i); }}
+                        onClick={() => { setInfoSidebarOpenClose("1"); setLst(i); }}
                     />
                 ))
 
@@ -113,12 +128,38 @@ function Travel() {
                         key={index}
                         position={{ lat: i.lng, lng: i.lat }}// 마커가 표시될 위치입니다
                         clickable={true}
-                        onClick={() => { console.log(i); setInfoSidebarOpenClose("1"); setLst(i);}}
+                        onClick={() => { setInfoSidebarOpenClose("1"); setLst(i);}}
                     />
                 ))
         }
         setMarkers(newmarker)
     }
+
+    //혼잡도 데이터 가져오기
+    const congestion = () => {
+        axios.post('http://192.168.0.53:8080/congestion').then((res)=>{
+            setCongestionData(res.data)
+        })
+    }
+
+    const getColor = (key) => {
+        const data = congestionData && congestionData.find(item => item.loc_code === key);
+        const congestionLevel = data && data.jam;
+        // 혼잡도에 따라 색상 설정
+        if (congestionLevel === 1) {
+            return "green";
+        } else if (congestionLevel === 2) {
+            return "lightgreen";
+        } else if (congestionLevel === 3) {
+            return "yellow";
+        } else if (congestionLevel === 4) {
+            return "orange";
+        } else if (congestionLevel === 5) {
+            return "red";
+        } else {
+            return "#fff";
+        }
+    };
 
     return (
         <div>
@@ -130,7 +171,7 @@ function Travel() {
                 style={{
                     // 지도의 크기
                     width: "100%",
-                    height: "95vh",
+                    height: "93vh",
                 }}
                 level={level} // 지도의 확대 레벨
                 onZoomChanged={() => { setLevel() }}
@@ -141,10 +182,10 @@ function Travel() {
                     <Polygon
                         key={index}
                         path={coordinates}
-                        strokeWeight={2}
+                        strokeWeight={0.5}
                         strokeColor="rgb(0, 0, 0, 0.5)"
                         strokeOpacity={0.8}
-                        fillColor={selectedPolygonIndex === index ? 'rgb(159, 187, 115)' : '#fff'} // 선택된 Polygon만 파란색
+                        fillColor={selectedPolygonIndex === index ? 'rgb(159, 187, 115)' : fillColor[index]} // 선택된 Polygon만 파란색
                         fillOpacity={0.7}
                         onClick={(_,e) => polygonClick(index,e)}
                         onMouseover={(e) => {
@@ -154,7 +195,7 @@ function Travel() {
                         }}
                         onMouseout={(e) => {
                             if (selectedPolygonIndex !== index) {
-                                e.setOptions({ fillColor: '#fff' });
+                                e.setOptions({ fillColor: fillColor[index] });
                             }
                         }}
                     />

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Header from './Header';
 import DataOriginModal from './DataOriginModal';
 import { Context } from '../context/Context';
-// import Logo from './Logo';
+import Logo from './Logo';
 
 function App() {
     const [testState, setTestState] = useState();
