@@ -5,7 +5,7 @@ import SidebarTravel from './SidebarTravel';
 import sidebarLogo from '../img/logo.png';
 import Navigation from './Navigation';
 
-function Sidebar(props) {
+function Sidebar(/*props*/) {
     // useEffect(()=>{
     //     const sidebar = document.querySelector('.sidebar');
     //     const testSidebar = ()=>{
@@ -15,22 +15,23 @@ function Sidebar(props) {
     //     }
     //     testSidebar();
     // })
-    const sidebar = [];
-    const sidebarBase = document.querySelector('.sidebarBase');
+
+    // const sidebar = [];
+    // const sidebarBase = document.querySelector('.sidebarBase');
 
     
 
-    if(props.testState === '1') {
-        sidebarBase.style.display = 'none';
-        sidebar.push(
-            <SidebarCongstion/>
-        );
-    } else if(props.testState === '2') {
-        sidebarBase.style.display = 'none';
-        sidebar.push(
-            <SidebarTravel/>
-        )
-    }
+    // if(props.testState === '1') {
+    //     sidebarBase.style.display = 'none';
+    //     sidebar.push(
+    //         <SidebarCongstion/>
+    //     );
+    // } else if(props.testState === '2') {
+    //     sidebarBase.style.display = 'none';
+    //     sidebar.push(
+    //         <SidebarTravel/>
+    //     )
+    // }
 
     return(
         <div className='sidebar'>
@@ -42,10 +43,11 @@ function Sidebar(props) {
                     {/* <Navigation testState={props.testState} setTestState={props.setTestState}/> */}
                 {/* </div> */}
                 <div className='sidebarCongestionTravel'>
-                    <div className='sidebarBase'>
+                    {/* <div className='sidebarBase'>
                         <SidebarCongstion/>
                     </div>
-                    {sidebar}
+                    {sidebar} */}
+                    <SidebarTravel/>
                 </div>
             {/* </div> */}
         </div>
