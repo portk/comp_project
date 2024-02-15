@@ -108,6 +108,9 @@ function SidebarTravel() {
                 <p>지도에서 지역을 선택해주세요.</p>
             </div>
             <div className='sidebarTravelChoiceOWrapWrap'>
+                {/* <div className='sidebarTravelChoiceOPlace'>
+                    <div className='sidebarTravelChoiceOPlaceTitle'></div>
+                </div> */}
                 <div className='sidebarTravelChoiceOWrap'>
                     <div className='sidebarTravelChoiceO'>
                         <div className='sidebarTravelChoice1'>

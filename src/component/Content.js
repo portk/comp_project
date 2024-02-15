@@ -5,31 +5,32 @@ import Navigation from './Navigation';
 import Travel from './Travel';
 import InfoSidebar from './InfoSidebar';
 
-function Content(props) {
-    const content = [];
-    const contentBase = document.querySelector('.contentBase');
+function Content(/*props*/) {
+    // const content = [];
+    // const contentBase = document.querySelector('.contentBase');
 
 
 
-    if(props.testState === '1') {
-        contentBase.style.display = 'none';
-        content.push(
-            <Congestion/>
-        );
-    } else if(props.testState === '2') {
-        contentBase.style.display = 'none';
-        content.push(
-            <Travel/>
-        );
-    }
+    // if(props.testState === '1') {
+    //     contentBase.style.display = 'none';
+    //     content.push(
+    //         <Congestion/>
+    //     );
+    // } else if(props.testState === '2') {
+    //     contentBase.style.display = 'none';
+    //     content.push(
+    //         <Travel/>
+    //     );
+    // }
 
     return(
         <div className='content'>
             <InfoSidebar/>
-            <div className='contentBase'>
+            {/* <div className='contentBase'>
                 <Congestion/>
             </div>
-            {content}
+            {content} */}
+            <Travel/>
         </div>
     )
 }

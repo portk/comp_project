@@ -1,6 +1,6 @@
 .infoSidebar {
     width: 22%;
-    height: 90vh;
+    height: 95vh;
     display: none;
     z-index: 19;
     position: absolute;
@@ -43,21 +43,29 @@
     font-weight: bold;
 }
 
-.infoSidebarInfoDivATDP {
+.infoSidebarInfoDivWrapWrap {
     margin-bottom: 5%;
     font-size: 14px;
 }
-.infoSidebarInfoDivATDP > * {
+.infoSidebarInfoDivWrapWrap > * {
     margin-bottom: 2%;
 }
 
 .infoSidebarInfoDivAddress,
-.infoSidebarInfoDivTel {
+.infoSidebarInfoDivTel,
+.infoSidebarInfoDivDayoff,
+.infoSidebarInfoDivParking,
+.infoSidebarInfoDivStartEnd,
+.infoSidebarInfoDivRooms {
     display: flex;
 }
 
 .infoSidebarInfoDivAddressSvg,
-.infoSidebarInfoDivTelSvg {
+.infoSidebarInfoDivTelSvg,
+.infoSidebarInfoDivDayoffSvg,
+.infoSidebarInfoDivParkingSvg,
+.infoSidebarInfoDivStartEndSvg,
+.infoSidebarInfoDivRoomsSvg {
     padding: 0.5% 1.5% 0 0;
 }
 
@@ -67,7 +75,4 @@
 
 .infoSidebarInfoDivStory {
     font-size: 15px;
-}
-.infoSidebarInfoDivStory p {
-    white-space: pre-line;
 }

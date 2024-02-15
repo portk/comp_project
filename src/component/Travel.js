@@ -130,7 +130,7 @@ function Travel() {
                 style={{
                     // 지도의 크기
                     width: "100%",
-                    height: "90vh",
+                    height: "95vh",
                 }}
                 level={level} // 지도의 확대 레벨
                 onZoomChanged={() => { setLevel() }}
@@ -144,12 +144,12 @@ function Travel() {
                         strokeWeight={2}
                         strokeColor="rgb(0, 0, 0, 0.5)"
                         strokeOpacity={0.8}
-                        fillColor={selectedPolygonIndex === index ? 'blue' : '#fff'} // 선택된 Polygon만 파란색
+                        fillColor={selectedPolygonIndex === index ? 'rgb(159, 187, 115)' : '#fff'} // 선택된 Polygon만 파란색
                         fillOpacity={0.7}
                         onClick={(_,e) => polygonClick(index,e)}
                         onMouseover={(e) => {
                             if (selectedPolygonIndex !== index) {
-                                e.setOptions({ fillColor: 'red' });
+                                e.setOptions({ fillColor: 'rgb(159, 187, 115, 0.3)' });
                             }
                         }}
                         onMouseout={(e) => {
@@ -195,12 +195,12 @@ function Travel() {
                     <div style={{backgroundColor:"white"}}>{lst.title}</div>
                 </CustomOverlayMap>
                 }
-                <span className='travelMapLevelReset' onClick={reset} title='지도 전체 보기'>
+                {/* <span className='travelMapLevelReset' onClick={reset} title='지도 전체 보기'>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Bold" x="0px" y="0px" viewBox="0 0 512 512" style={{ enableBackground: 'new 0 0 512 512' }} xmlSpace="preserve" width="35" height="35" fill='white'>
                         <path d="M288,192H160c-17.673,0-32,14.327-32,32s14.327,32,32,32h128c17.673,0,32-14.327,32-32S305.673,192,288,192z" />
                         <path d="M502.661,457.569l-99.046-99.067c74.18-99.06,54.01-239.499-45.05-313.678S119.067-9.187,44.887,89.873  s-54.01,239.499,45.05,313.678c79.587,59.597,188.929,59.623,268.544,0.063l99.088,99.088c12.452,12.452,32.64,12.452,45.092,0  c12.452-12.452,12.452-32.64,0-45.092L502.661,457.569z M225.116,384.49c-88.02,0-159.374-71.354-159.374-159.374  S137.097,65.742,225.116,65.742s159.374,71.354,159.374,159.374C384.397,313.097,313.098,384.397,225.116,384.49z" />
                     </svg>
-                </span>
+                </span> */}
             </Map>
         </div>
     )
