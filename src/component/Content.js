@@ -1,11 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import '../css/content.css';
-import Congestion from './Congestion';
-import Navigation from './Navigation';
+import Sidebar from './Sidebar';
 import Travel from './Travel';
 import InfoSidebar from './InfoSidebar';
+import { Context } from '../context/Context';
 
 function Content(/*props*/) {
+    const { isMobile } = useContext(Context);
+    useEffect(()=>{
+        if(isMobile){
+            document.querySelector(".content").style.width = "100%";
+        }
+    },[])
     // const content = [];
     // const contentBase = document.querySelector('.contentBase');
 
@@ -25,12 +31,17 @@ function Content(/*props*/) {
 
     return(
         <div className='content'>
-            <InfoSidebar/>
-            {/* <div className='contentBase'>
-                <Congestion/>
-            </div>
-            {content} */}
-            <Travel/>
+            {isMobile?
+                <div className='mobileContent'>
+                    <Sidebar/>
+                    <InfoSidebar/>
+                    <Travel/>
+                </div>:
+                <div>
+                    <InfoSidebar/>
+                    <Travel/>
+                </div>
+            }
         </div>
     )
 }

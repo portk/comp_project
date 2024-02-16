@@ -16,6 +16,9 @@ function Travel() {
         lng: 127.77
     });
 
+    //모바일 모델
+    const [mobilelevel, setMobileLevel] = useState(13);
+
     const [markers,setMarkers] = useState([]);
 
     const [selectedPolygonIndex, setSelectedPolygonIndex] = useState(null);
@@ -26,15 +29,17 @@ function Travel() {
 
 
     //useContext를 이용해 sidebar에서 backend에서 통신한 값 받아오기 
-    const {setSigid,tourplace,festival,accommodation,sidebarclick,setSidebarClick,lst,setLst,setTourPlace,setFestival,setAccommodation,setInfoSidebarOpenClose,setSidebarTravelChoice,setLocationName,setLocationCongest} = useContext(Context);
+    const {setSigid,tourplace,festival,accommodation,sidebarclick,setSidebarClick,lst,setLst,setTourPlace,setFestival,setAccommodation,setInfoSidebarOpenClose,setSidebarTravelChoice,setLocationName,setLocationCongest,isMobile,setMobileSidebarButton} = useContext(Context);
 
     // polygon 클릭시 확대하고 색깔 바꾸는 함수
     const polygonClick = (index, e,c) => {
-        setLevel(9);
+        setLevel(10);
+        setMobileLevel(10);
         setPosition({ lat: e.latLng.Ma, lng: e.latLng.La });
         // 선택한 Polygon이 이미 선택되어 있는지 확인
         if (selectedPolygonIndex === index) {
             setLevel(12); // 확대 레벨 원래대로 복원
+            setMobileLevel(13);
             setSelectedPolygonIndex(null); // 선택 해제
             setMarkers() //마커 초기화
             setPosition({lat: 36.45,lng: 127.77}) //맵중앙으로 이동
@@ -56,6 +61,7 @@ function Travel() {
             setSidebarTravelChoice('o');
             setSidebarClick();
             setInfoSidebarOpenClose();
+            setMobileSidebarButton(true);
         }
     }
     
@@ -175,10 +181,13 @@ function Travel() {
                 style={{
                     // 지도의 크기
                     width: "100%",
-                    height: "93vh",
+                    height:
+                    isMobile?
+                    "93dvh":
+                    "93vh"
                 }}
-                level={level} // 지도의 확대 레벨
-                onZoomChanged={() => { setLevel() }}
+                level={isMobile?mobilelevel:level} // 지도의 확대 레벨
+                onZoomChanged={() => { setLevel();setMobileLevel(); }}
             >
                 {markers}
 

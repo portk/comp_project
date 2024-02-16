@@ -5,14 +5,26 @@ import { Context } from '../context/Context';
 import { useContext } from 'react';
 
 function Header(/*props*/) {
-    const { setContext } = useContext(Context);
+    const { setContext,isMobile,setMobileSidebarButton,mobileSidebarButton } = useContext(Context);
 
     const jeogiReset = ()=>{
         window.location.reload();
     }
 
+    const sidebarOption = () => {
+        if(mobileSidebarButton===true){
+            setMobileSidebarButton(false)
+        }else{
+            setMobileSidebarButton(true)
+        }
+    }
+
     return(
         <div className='header'>
+            {isMobile===true?
+            <div className='mobileSidebar' onClick={()=>{sidebarOption()}}>
+                <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="22px" height="20px"><rect y="11" width="24" height="1"/><rect y="4" width="24" height="1" rx="1"/><rect y="18" width="24" height="1" rx="1"/></svg>
+            </div>:""}
             <div className='headerLogo'>
                 {/* <img src={headerLogo}></img> */}
                 <div className='headerLogoWrap' onClick={()=>{jeogiReset();}}>

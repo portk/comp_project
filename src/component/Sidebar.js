@@ -1,11 +1,23 @@
 import { useContext, useEffect, useState } from 'react';
 import '../css/sidebar.css';
 import SidebarTravel from './SidebarTravel';
-import SidebarTravelmobile from './SidebarTravelmobile';
+import { Context } from '../context/Context';
 
-import { useMediaQuery } from 'react-responsive';
 function Sidebar(/*props*/) {
-    const isDesktopOrLaptop = useMediaQuery({ query: "(min-width: 1024px)" });
+    const { isMobile,mobileSidebarButton } = useContext(Context);
+    useEffect(()=>{
+        if(isMobile&&mobileSidebarButton===false){
+            document.querySelector('.sidebar').style.display = "none"
+        }
+    },[mobileSidebarButton])
+
+    useEffect(()=>{
+        if(isMobile&&mobileSidebarButton===true){
+            document.querySelector('.sidebar').style.display = "block"
+        }
+    },[mobileSidebarButton])
+
+
 
     // useEffect(()=>{
     //     const sidebar = document.querySelector('.sidebar');
@@ -48,8 +60,7 @@ function Sidebar(/*props*/) {
                         <SidebarCongstion/>
                     </div>
                     {sidebar} */}
-                    {isDesktopOrLaptop?<SidebarTravel/>:<SidebarTravelmobile/>}
-                    
+                    <SidebarTravel/>
                 </div>
             {/* </div> */}
         </div>
