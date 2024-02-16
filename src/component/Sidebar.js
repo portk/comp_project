@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import '../css/sidebar.css';
-import SidebarCongstion from './SidebarCongestion';
 import SidebarTravel from './SidebarTravel';
-import sidebarLogo from '../img/logo.png';
-import Navigation from './Navigation';
+import SidebarTravelmobile from './SidebarTravelmobile';
 
+import { useMediaQuery } from 'react-responsive';
 function Sidebar(/*props*/) {
+    const isDesktopOrLaptop = useMediaQuery({ query: "(min-width: 1024px)" });
+
     // useEffect(()=>{
     //     const sidebar = document.querySelector('.sidebar');
     //     const testSidebar = ()=>{
@@ -47,7 +48,8 @@ function Sidebar(/*props*/) {
                         <SidebarCongstion/>
                     </div>
                     {sidebar} */}
-                    <SidebarTravel/>
+                    {isDesktopOrLaptop?<SidebarTravel/>:<SidebarTravelmobile/>}
+                    
                 </div>
             {/* </div> */}
         </div>

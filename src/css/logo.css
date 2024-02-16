@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #9FBB73;
+    background-color: rgb(0, 0, 0, 0.2);
 }
 
 .logoWrap {

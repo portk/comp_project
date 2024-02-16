@@ -1,8 +1,8 @@
 .sidebar {
     width: 22%;
-    height: 95vh;
+    height: 93vh;
     min-width: 300px;
-    min-height: 600px;
+    background-color: white;
     z-index: 20;
     position: relative;
     box-shadow: 5px 0 5px -3px rgb(221, 221, 211, 0.5);

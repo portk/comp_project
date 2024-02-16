@@ -6,7 +6,6 @@ import { Context } from '../context/Context';
 import axios from 'axios';
 
 function Travel() {
-
     // polygon 그리기
     const [sigSwitch, setSigSwitch] = useState([]);
 
@@ -25,11 +24,12 @@ function Travel() {
 
     const [congestionData, setCongestionData] = useState();
 
+
     //useContext를 이용해 sidebar에서 backend에서 통신한 값 받아오기 
-    const {setSigid,tourplace,festival,accommodation,sidebarclick,setSidebarClick,lst,setLst,setTourPlace,setFestival,setAccommodation,setInfoSidebarOpenClose,setSidebarTravelChoice} = useContext(Context);
+    const {setSigid,tourplace,festival,accommodation,sidebarclick,setSidebarClick,lst,setLst,setTourPlace,setFestival,setAccommodation,setInfoSidebarOpenClose,setSidebarTravelChoice,setLocationName,setLocationCongest} = useContext(Context);
 
     // polygon 클릭시 확대하고 색깔 바꾸는 함수
-    const polygonClick = (index, e,_) => {
+    const polygonClick = (index, e,c) => {
         setLevel(9);
         setPosition({ lat: e.latLng.Ma, lng: e.latLng.La });
         // 선택한 Polygon이 이미 선택되어 있는지 확인
@@ -45,6 +45,9 @@ function Travel() {
             setMarkers() //마커 초기화
             setSelectedPolygonIndex(index); // 선택된 Polygon의 인덱스 업데이트
             let sigid = sig.features[index].properties.SIG_CD;
+            let location = sig.features[index].properties.SIG_KOR_NM;
+            setLocationName(location)
+            setLocationCongest(fillColor[index])
             setSigid(sigid);
             setLst();
             setTourPlace();
@@ -55,6 +58,7 @@ function Travel() {
             setInfoSidebarOpenClose();
         }
     }
+    
 
     useEffect(() => {
         congestion();
@@ -117,7 +121,7 @@ function Travel() {
                         key={index}
                         position={{ lat: i.lng, lng: i.lat }}// 마커가 표시될 위치입니다
                         clickable={true}
-                        onClick={() => {  setInfoSidebarOpenClose("1"); setLst(i); }}
+                        onClick={() => { setInfoSidebarOpenClose("1"); setLst(i); }}
                     />
                 ))
 
@@ -128,7 +132,7 @@ function Travel() {
                         key={index}
                         position={{ lat: i.lng, lng: i.lat }}// 마커가 표시될 위치입니다
                         clickable={true}
-                        onClick={() => {  setInfoSidebarOpenClose("1"); setLst(i);}}
+                        onClick={() => { setInfoSidebarOpenClose("1"); setLst(i);}}
                     />
                 ))
         }
@@ -161,7 +165,6 @@ function Travel() {
         }
     };
 
-
     return (
         <div>
             <Map // 지도를 표시할 Container
@@ -172,7 +175,7 @@ function Travel() {
                 style={{
                     // 지도의 크기
                     width: "100%",
-                    height: "95vh",
+                    height: "93vh",
                 }}
                 level={level} // 지도의 확대 레벨
                 onZoomChanged={() => { setLevel() }}

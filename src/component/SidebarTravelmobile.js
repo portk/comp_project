@@ -1,11 +1,11 @@
-import '../css/sidebarTravel.css';
+import '../css/sidebarTravelmobile.css';
 import { Context } from '../context/Context';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import sig from '../json/sig.json';
 import nullImg1 from '../img/nullImgTest1.png';
 
-function SidebarTravel() {
+function SidebarTravelmobile() {
     const {sigid,setTourPlace,setFestival,setAccommodation,setSidebarClick,sidebarclick,tourplace,festival,accommodation,setLst,sidebarTravelChoice,setSidebarTravelChoice,setInfoSidebarOpenClose,locationName,locationCongest} = useContext(Context)
     const [catNull, setCatNull] = useState([]);
     const [congest,setCongest] = useState();
@@ -179,8 +179,6 @@ function SidebarTravel() {
         sidebarTravelListO2.style.display = 'none';
         sidebarTravelListO3.style.display = 'block';
     }
-
-    
 
     return(
         <div className='sidebarTravel'>
@@ -356,4 +354,4 @@ function SidebarTravel() {
     )
 }
 
-export default SidebarTravel;
+export default SidebarTravelmobile;

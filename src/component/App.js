@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Header from './Header';
 import DataOriginModal from './DataOriginModal';
 import { Context } from '../context/Context';
-// import Logo from './Logo';
+import Logo from './Logo';
 
 function App() {
     const [testState, setTestState] = useState();
@@ -20,11 +20,13 @@ function App() {
     const [accommodation, setAccommodation] = useState();
     const [sidebarclick, setSidebarClick] = useState();
     const [lst, setLst] = useState();
+    const [locationName,setLocationName] = useState();
+    const [locationCongest,setLocationCongest] = useState();
 
     const [sidebarTravelChoice, setSidebarTravelChoice] = useState();
 
     return(
-        <Context.Provider value={{context, setContext, infoSidebarOpenClose, setInfoSidebarOpenClose, sigid, setSigid,tourplace,setTourPlace,festival,setFestival,accommodation,setAccommodation,sidebarclick,setSidebarClick,lst,setLst,sidebarTravelChoice,setSidebarTravelChoice}}>
+        <Context.Provider value={{context, setContext, infoSidebarOpenClose, setInfoSidebarOpenClose, sigid, setSigid,tourplace,setTourPlace,festival,setFestival,accommodation,setAccommodation,sidebarclick,setSidebarClick,lst,setLst,sidebarTravelChoice,setSidebarTravelChoice,locationName,setLocationName,locationCongest,setLocationCongest}}>
             <div className='app'>
                 <Header testState={testState} setTestState={setTestState}/>
                 <DataOriginModal/>
