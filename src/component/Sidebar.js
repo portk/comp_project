@@ -1,11 +1,23 @@
 import { useContext, useEffect, useState } from 'react';
 import '../css/sidebar.css';
-import SidebarCongstion from './SidebarCongestion';
 import SidebarTravel from './SidebarTravel';
-import sidebarLogo from '../img/logo.png';
-import Navigation from './Navigation';
+import { Context } from '../context/Context';
 
 function Sidebar(/*props*/) {
+
+    const { isMobile,mobileSidebarButton } = useContext(Context);
+    useEffect(()=>{
+        if(isMobile&&mobileSidebarButton===false){
+            document.querySelector('.sidebar').style.display = "none"
+        }
+    },[mobileSidebarButton])
+
+    useEffect(()=>{
+        if(isMobile&&mobileSidebarButton===true){
+            document.querySelector('.sidebar').style.display = "block"
+        }
+    },[mobileSidebarButton])
+
     // useEffect(()=>{
     //     const sidebar = document.querySelector('.sidebar');
     //     const testSidebar = ()=>{

@@ -16,6 +16,9 @@ function Travel() {
         lng: 127.77
     });
 
+    //모바일 모델
+    const [mobilelevel, setMobileLevel] = useState(13);
+
     const [markers,setMarkers] = useState([]);
 
     const [selectedPolygonIndex, setSelectedPolygonIndex] = useState(null);
@@ -26,15 +29,17 @@ function Travel() {
 
 
     //useContext를 이용해 sidebar에서 backend에서 통신한 값 받아오기 
-    const {setSigid,tourplace,festival,accommodation,sidebarclick,setSidebarClick,lst,setLst,setTourPlace,setFestival,setAccommodation,setInfoSidebarOpenClose,setSidebarTravelChoice} = useContext(Context);
+    const {setSigid,tourplace,festival,accommodation,sidebarclick,setSidebarClick,lst,setLst,setTourPlace,setFestival,setAccommodation,setInfoSidebarOpenClose,setSidebarTravelChoice,setLocationName,setLocationCongest,isMobile,setMobileSidebarButton} = useContext(Context);
 
     // polygon 클릭시 확대하고 색깔 바꾸는 함수
     const polygonClick = (index, e,_) => {
         setLevel(9);
+        setMobileLevel(10);
         setPosition({ lat: e.latLng.Ma, lng: e.latLng.La });
         // 선택한 Polygon이 이미 선택되어 있는지 확인
         if (selectedPolygonIndex === index) {
             setLevel(12); // 확대 레벨 원래대로 복원
+            setMobileLevel(13);
             setSelectedPolygonIndex(null); // 선택 해제
             setMarkers() //마커 초기화
             setPosition({lat: 36.45,lng: 127.77}) //맵중앙으로 이동
@@ -45,6 +50,9 @@ function Travel() {
             setMarkers() //마커 초기화
             setSelectedPolygonIndex(index); // 선택된 Polygon의 인덱스 업데이트
             let sigid = sig.features[index].properties.SIG_CD;
+            let location = sig.features[index].properties.SIG_KOR_NM;
+            setLocationName(location)
+            setLocationCongest(fillColor[index])
             setSigid(sigid);
             setLst();
             setTourPlace();
@@ -53,6 +61,7 @@ function Travel() {
             setSidebarTravelChoice('o');
             setSidebarClick();
             setInfoSidebarOpenClose();
+            setMobileSidebarButton(true);
         }
     }
 
@@ -147,17 +156,17 @@ function Travel() {
         const congestionLevel = data && data.jam;
         // 혼잡도에 따라 색상 설정
         if (congestionLevel === 1) {
-            return "green";
+            return "rgb(140, 192, 222)";
         } else if (congestionLevel === 2) {
-            return "lightgreen";
+            return "rgb(153, 188, 133)";
         } else if (congestionLevel === 3) {
-            return "yellow";
+            return "rgb(243, 209, 121)";
         } else if (congestionLevel === 4) {
-            return "orange";
+            return "rgb(240, 152, 114)";
         } else if (congestionLevel === 5) {
-            return "red";
+            return "rgb(244, 96, 96)";
         } else {
-            return "#fff";
+            return "white";
         }
     };
 
@@ -171,10 +180,13 @@ function Travel() {
                 style={{
                     // 지도의 크기
                     width: "100%",
-                    height: "93vh",
+                    height:
+                    isMobile?
+                    "93dvh":
+                    "93vh"
                 }}
-                level={level} // 지도의 확대 레벨
-                onZoomChanged={() => { setLevel() }}
+                level={isMobile?mobilelevel:level} // 지도의 확대 레벨
+                onZoomChanged={() => { setLevel();setMobileLevel();}}
             >
                 {markers}
 
@@ -185,17 +197,17 @@ function Travel() {
                         strokeWeight={0.5}
                         strokeColor="rgb(0, 0, 0, 0.5)"
                         strokeOpacity={0.8}
-                        fillColor={selectedPolygonIndex === index ? 'rgb(159, 187, 115)' : fillColor[index]} // 선택된 Polygon만 파란색
-                        fillOpacity={0.7}
+                        fillColor={fillColor[index]} // 선택된 Polygon만 파란색
+                        fillOpacity={selectedPolygonIndex === index ? 0.7 : 0.3}
                         onClick={(_,e) => polygonClick(index,e)}
                         onMouseover={(e) => {
                             if (selectedPolygonIndex !== index) {
-                                e.setOptions({ fillColor: 'rgb(159, 187, 115, 0.3)' });
+                                e.setOptions({ fillOpacity: '0.7' });
                             }
                         }}
                         onMouseout={(e) => {
                             if (selectedPolygonIndex !== index) {
-                                e.setOptions({ fillColor: fillColor[index] });
+                                e.setOptions({ fillOpacity: '0.3' });
                             }
                         }}
                     />

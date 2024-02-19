@@ -75,3 +75,8 @@
 .headerDataOrigin svg {
     cursor: pointer;
 }
+@media (max-width: 768px) {
+    .headerDataOrigin {
+      padding: 0 8%;
+    }
+  }

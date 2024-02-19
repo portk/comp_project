@@ -1,0 +1,96 @@
+.congestionInfoModal {
+    width: 12%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    position: absolute;
+    padding: 0.5%;
+    z-index: 20;
+    top: 62px;
+    right: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 1px lightgray;
+}
+.congestionInfoModal p {
+    opacity: 0.8;
+}
+
+.congestionInfoModalColorInfo {
+    width: 100%;
+    height: 60%;
+}
+
+.congestionInfoModalColorInfoRed,
+.congestionInfoModalColorInfoOrange,
+.congestionInfoModalColorInfoYellow,
+.congestionInfoModalColorInfoGreen,
+.congestionInfoModalColorInfoBlue {
+    display: grid;
+    grid-template-columns: 20% 10% 35% 35%;
+    width: 100%;
+    height: 20%;
+    font-size: 12px;
+}
+.congestionInfoModalColorInfoRed > *,
+.congestionInfoModalColorInfoOrange > *,
+.congestionInfoModalColorInfoYellow > *,
+.congestionInfoModalColorInfoGreen > *,
+.congestionInfoModalColorInfoBlue > * {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.congestionInfoModalColorInfoRedColor,
+.congestionInfoModalColorInfoOrangeColor,
+.congestionInfoModalColorInfoYellowColor,
+.congestionInfoModalColorInfoGreenColor,
+.congestionInfoModalColorInfoBlueColor {
+    justify-content: center;
+}
+.congestionInfoModalColorInfoRedColor div {
+    width: 50%;
+    height: 83%;
+    border-radius: 100%;
+    background-color: rgb(244, 96, 96);
+}
+.congestionInfoModalColorInfoOrangeColor div {
+    width: 50%;
+    height: 83%;
+    border-radius: 100%;
+    background-color: rgb(240, 152, 114);
+}
+.congestionInfoModalColorInfoYellowColor div {
+    width: 50%;
+    height: 83%;
+    border-radius: 100%;
+    background-color: rgb(243, 209, 121);
+}
+.congestionInfoModalColorInfoGreenColor div {
+    width: 50%;
+    height: 83%;
+    border-radius: 100%;
+    background-color: rgb(153, 188, 133);
+}
+.congestionInfoModalColorInfoBlueColor div {
+    width: 50%;
+    height: 83%;
+    border-radius: 100%;
+    background-color: rgb(140, 192, 222);
+}
+
+.congestionInfoModalMathInfo {
+    margin-top: 5%;
+    font-size: 10px;
+    width: 100%;
+    height: 40%;
+    display: flex;
+}
+
+.congestionInfoModalMathInfoIcon {
+    margin-right: 1%;
+}
