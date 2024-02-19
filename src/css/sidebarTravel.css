@@ -40,7 +40,7 @@
 
 .sidebarTravelChoiceOWrap {
     width: 100%;
-    height: 12%;
+    height: 15%;
     box-shadow: 0 3px 5px 3px rgb(221, 221, 211, 0.3);
     background-color: white;
 }
@@ -53,23 +53,21 @@
     justify-content: center;
     /* box-shadow: 0 3px 5px 3px rgb(221, 221, 211, 0.3); */
 }
-
 .sidebarTravelChoiceOPlace > p {
     font-weight: bold;
     opacity: 0.8;
 }
 
 .sidebarTravelChoiceOPlaceCongestion {
-    width: 12%;
-    height: 55%;
+    width: 15%;
+    height: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
     font-size: 10px;
     /* font-weight: bold; */
-    background-color: red;
-    /* color: white; */
+    color: white;
     margin-left: 1.5%;
 }
 
@@ -81,7 +79,6 @@
     justify-content: space-between;
     font-size: 14px;
 }
-
 .sidebarTravelChoiceO > * {
     width: 100%;
     height: 100%;
@@ -118,7 +115,7 @@
 
 .sidebarTravelList {
     width: 100%;
-    height: 88%;
+    height: 85%;
     /* padding: 0 3%; */
     /* overflow: auto; */
 }
@@ -181,7 +178,6 @@
     box-shadow: 0 3px 5px 3px rgb(221, 221, 211, 0.3);
     border-top: 2px dashed rgb(128, 128, 128, 0.1);
 }
-
 .sidebarTravelChoice1Category p {
     width: fit-content;
     height: fit-content;
@@ -213,6 +209,42 @@
     align-items: center;
 }
 
+.sidebarTravelChoice1Category1-1:hover {
+    background-color: rgb(244, 96, 96) !important;
+    color: white !important;
+    border-radius: 5px !important;
+}
+.sidebarTravelChoice1Category1-2:hover {
+    background-color: rgb(240, 152, 114) !important;
+    color: white !important;
+    border-radius: 5px !important;
+}
+.sidebarTravelChoice1Category1-3:hover {
+    background-color: rgb(243, 209, 121) !important;
+    color: white !important;
+    border-radius: 5px !important;
+}
+.sidebarTravelChoice1Category1-4:hover {
+    background-color: rgb(153, 188, 133) !important;
+    color: white !important;
+    border-radius: 5px !important;
+}
+.sidebarTravelChoice1Category2-1:hover {
+    background-color: rgb(140, 192, 222) !important;
+    color: white !important;
+    border-radius: 5px !important;
+}
+.sidebarTravelChoice1Category2-2:hover {
+    background-color: rgb(83, 113, 136) !important;
+    color: white !important;
+    border-radius: 5px !important;
+}
+.sidebarTravelChoice1Category2-3:hover {
+    background-color: rgb(186, 144, 198) !important;
+    color: white !important;
+    border-radius: 5px !important;
+}
+
 .sidebarTravelListO1 {
     width: 100%;
     height: 90%;
@@ -226,6 +258,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 14px;
 }
 
 .sidebarTravelListO2, 
@@ -313,8 +346,4 @@
 .sidebarTravelListO3DivInfoAddressSvgWrap, 
 .sidebarTravelListO3DivInfoTelSvgWrap {
     padding: 1% 3% 0 0;
-}
-
-.catNull {
-    font-size: 14px;
 }

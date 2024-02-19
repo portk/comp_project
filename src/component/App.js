@@ -8,6 +8,7 @@ import DataOriginModal from './DataOriginModal';
 import { Context } from '../context/Context';
 import Logo from './Logo';
 import { useMediaQuery } from 'react-responsive';
+
 function App() {
     const [testState, setTestState] = useState();
 
@@ -23,13 +24,14 @@ function App() {
     const [lst, setLst] = useState();
     const [locationName,setLocationName] = useState();
     const [locationCongest,setLocationCongest] = useState();
-
     const [sidebarTravelChoice, setSidebarTravelChoice] = useState();
+    const [congestionData, setCongestionData] = useState();
 
     const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
     const [mobileSidebarButton,setMobileSidebarButton] = useState(false);
+
     return(
-        <Context.Provider value={{context, setContext, infoSidebarOpenClose, setInfoSidebarOpenClose, sigid, setSigid,tourplace,setTourPlace,festival,setFestival,accommodation,setAccommodation,sidebarclick,setSidebarClick,lst,setLst,sidebarTravelChoice,setSidebarTravelChoice,locationName,setLocationName,locationCongest,setLocationCongest,isMobile,setMobileSidebarButton,mobileSidebarButton}}>
+        <Context.Provider value={{context, setContext, infoSidebarOpenClose, setInfoSidebarOpenClose, sigid, setSigid,tourplace,setTourPlace,festival,setFestival,accommodation,setAccommodation,sidebarclick,setSidebarClick,lst,setLst,sidebarTravelChoice,setSidebarTravelChoice,locationName,setLocationName,locationCongest,setLocationCongest,isMobile,setMobileSidebarButton,mobileSidebarButton,setCongestionData,congestionData}}>
             <div className='app'>
                 <Header testState={testState} setTestState={setTestState}/>
                 <DataOriginModal/>

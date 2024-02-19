@@ -23,7 +23,7 @@ function Header(/*props*/) {
         <div className='header'>
             {isMobile===true?
             <div className='mobileSidebar' onClick={()=>{sidebarOption()}}>
-                <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="22px" height="20px"><rect y="11" width="24" height="1"/><rect y="4" width="24" height="1" rx="1"/><rect y="18" width="24" height="1" rx="1"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="20" height="20"><rect y="11" width="24" height="1"/><rect y="4" width="24" height="1" rx="1"/><rect y="18" width="24" height="1" rx="1"/></svg>
             </div>:""}
             <div className='headerLogo'>
                 {/* <img src={headerLogo}></img> */}

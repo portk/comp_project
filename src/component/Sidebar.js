@@ -4,6 +4,7 @@ import SidebarTravel from './SidebarTravel';
 import { Context } from '../context/Context';
 
 function Sidebar(/*props*/) {
+
     const { isMobile,mobileSidebarButton } = useContext(Context);
     useEffect(()=>{
         if(isMobile&&mobileSidebarButton===false){
@@ -16,8 +17,6 @@ function Sidebar(/*props*/) {
             document.querySelector('.sidebar').style.display = "block"
         }
     },[mobileSidebarButton])
-
-
 
     // useEffect(()=>{
     //     const sidebar = document.querySelector('.sidebar');

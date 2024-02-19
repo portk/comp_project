@@ -2,7 +2,6 @@ import '../css/sidebarTravel.css';
 import { Context } from '../context/Context';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import sig from '../json/sig.json';
 import nullImg1 from '../img/nullImgTest1.png';
 
 function SidebarTravel() {
@@ -58,27 +57,26 @@ function SidebarTravel() {
 
     const locationCongestResult = () => {
         const sidebarTravelChoiceOPlaceCongestion = document.querySelector('.sidebarTravelChoiceOPlaceCongestion')
-        if (locationCongest === "green") {
+        if (locationCongest === "rgb(140, 192, 222)") {
             setCongest("원활");
             sidebarTravelChoiceOPlaceCongestion.style.backgroundColor = locationCongest;
-        } else if (locationCongest === "lightgreen") {
+        } else if (locationCongest === "rgb(153, 188, 133)") {
             setCongest("조금원활")
             sidebarTravelChoiceOPlaceCongestion.style.backgroundColor = locationCongest;
-        } else if (locationCongest === "yellow") {
+        } else if (locationCongest === "rgb(243, 209, 121)") {
             setCongest("보통")
             sidebarTravelChoiceOPlaceCongestion.style.backgroundColor = locationCongest;
-        } else if (locationCongest === "orange") {
+        } else if (locationCongest === "rgb(240, 152, 114)") {
             setCongest("조금혼잡")
             sidebarTravelChoiceOPlaceCongestion.style.backgroundColor = locationCongest;
-        } else if (locationCongest === "red") {
+        } else if (locationCongest === "rgb(244, 96, 96)") {
             setCongest("혼잡")
             sidebarTravelChoiceOPlaceCongestion.style.backgroundColor = locationCongest;
         } else {
             setCongest("정보없음")
-            sidebarTravelChoiceOPlaceCongestion.style.backgroundColor = "white"
+            sidebarTravelChoiceOPlaceCongestion.style.backgroundColor = "gray";
         }
     }
-    
 
     const sidebarTravelChoice1WrapSvgColor = ()=>{
         const sidebarTravelChoice1WrapSvg = document.querySelector('.sidebarTravelChoice1Wrap svg');
@@ -180,7 +178,229 @@ function SidebarTravel() {
         sidebarTravelListO3.style.display = 'block';
     }
 
-    
+    const sidebarTravelChoice1Category1_1Color = ()=>{
+        const sidebarTravelChoice1Category1_1 = document.querySelector('.sidebarTravelChoice1Category1-1');
+        const sidebarTravelChoice1Category1_2 = document.querySelector('.sidebarTravelChoice1Category1-2');
+        const sidebarTravelChoice1Category1_3= document.querySelector('.sidebarTravelChoice1Category1-3');
+        const sidebarTravelChoice1Category1_4 = document.querySelector('.sidebarTravelChoice1Category1-4');
+        const sidebarTravelChoice1Category2_1 = document.querySelector('.sidebarTravelChoice1Category2-1');
+        const sidebarTravelChoice1Category2_2 = document.querySelector('.sidebarTravelChoice1Category2-2');
+        const sidebarTravelChoice1Category2_3 = document.querySelector('.sidebarTravelChoice1Category2-3');
+        
+        sidebarTravelChoice1Category1_1.style.color = 'white';
+        sidebarTravelChoice1Category1_1.style.backgroundColor = 'rgb(244, 96, 96)';
+        sidebarTravelChoice1Category1_1.style.borderRadius = '5px';
+
+        sidebarTravelChoice1Category1_2.style.color = 'black';
+        sidebarTravelChoice1Category1_2.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_3.style.color = 'black';
+        sidebarTravelChoice1Category1_3.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_4.style.color = 'black';
+        sidebarTravelChoice1Category1_4.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_1.style.color = 'black';
+        sidebarTravelChoice1Category2_1.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_2.style.color = 'black';
+        sidebarTravelChoice1Category2_2.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_3.style.color = 'black';
+        sidebarTravelChoice1Category2_3.style.backgroundColor = 'white';
+    }
+
+    const sidebarTravelChoice1Category1_2Color = ()=>{
+        const sidebarTravelChoice1Category1_1 = document.querySelector('.sidebarTravelChoice1Category1-1');
+        const sidebarTravelChoice1Category1_2 = document.querySelector('.sidebarTravelChoice1Category1-2');
+        const sidebarTravelChoice1Category1_3= document.querySelector('.sidebarTravelChoice1Category1-3');
+        const sidebarTravelChoice1Category1_4 = document.querySelector('.sidebarTravelChoice1Category1-4');
+        const sidebarTravelChoice1Category2_1 = document.querySelector('.sidebarTravelChoice1Category2-1');
+        const sidebarTravelChoice1Category2_2 = document.querySelector('.sidebarTravelChoice1Category2-2');
+        const sidebarTravelChoice1Category2_3 = document.querySelector('.sidebarTravelChoice1Category2-3');
+        
+        sidebarTravelChoice1Category1_2.style.color = 'white';
+        sidebarTravelChoice1Category1_2.style.backgroundColor = 'rgb(240, 152, 114)';
+        sidebarTravelChoice1Category1_2.style.borderRadius = '5px';
+
+        sidebarTravelChoice1Category1_1.style.color = 'black';
+        sidebarTravelChoice1Category1_1.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_3.style.color = 'black';
+        sidebarTravelChoice1Category1_3.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_4.style.color = 'black';
+        sidebarTravelChoice1Category1_4.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_1.style.color = 'black';
+        sidebarTravelChoice1Category2_1.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_2.style.color = 'black';
+        sidebarTravelChoice1Category2_2.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_3.style.color = 'black';
+        sidebarTravelChoice1Category2_3.style.backgroundColor = 'white';
+    }
+
+    const sidebarTravelChoice1Category1_3Color = ()=>{
+        const sidebarTravelChoice1Category1_1 = document.querySelector('.sidebarTravelChoice1Category1-1');
+        const sidebarTravelChoice1Category1_2 = document.querySelector('.sidebarTravelChoice1Category1-2');
+        const sidebarTravelChoice1Category1_3= document.querySelector('.sidebarTravelChoice1Category1-3');
+        const sidebarTravelChoice1Category1_4 = document.querySelector('.sidebarTravelChoice1Category1-4');
+        const sidebarTravelChoice1Category2_1 = document.querySelector('.sidebarTravelChoice1Category2-1');
+        const sidebarTravelChoice1Category2_2 = document.querySelector('.sidebarTravelChoice1Category2-2');
+        const sidebarTravelChoice1Category2_3 = document.querySelector('.sidebarTravelChoice1Category2-3');
+        
+        sidebarTravelChoice1Category1_3.style.color = 'white';
+        sidebarTravelChoice1Category1_3.style.backgroundColor = 'rgb(243, 209, 121)';
+        sidebarTravelChoice1Category1_3.style.borderRadius = '5px';
+
+        sidebarTravelChoice1Category1_2.style.color = 'black';
+        sidebarTravelChoice1Category1_2.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_1.style.color = 'black';
+        sidebarTravelChoice1Category1_1.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_4.style.color = 'black';
+        sidebarTravelChoice1Category1_4.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_1.style.color = 'black';
+        sidebarTravelChoice1Category2_1.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_2.style.color = 'black';
+        sidebarTravelChoice1Category2_2.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_3.style.color = 'black';
+        sidebarTravelChoice1Category2_3.style.backgroundColor = 'white';
+    }
+
+    const sidebarTravelChoice1Category1_4Color = ()=>{
+        const sidebarTravelChoice1Category1_1 = document.querySelector('.sidebarTravelChoice1Category1-1');
+        const sidebarTravelChoice1Category1_2 = document.querySelector('.sidebarTravelChoice1Category1-2');
+        const sidebarTravelChoice1Category1_3= document.querySelector('.sidebarTravelChoice1Category1-3');
+        const sidebarTravelChoice1Category1_4 = document.querySelector('.sidebarTravelChoice1Category1-4');
+        const sidebarTravelChoice1Category2_1 = document.querySelector('.sidebarTravelChoice1Category2-1');
+        const sidebarTravelChoice1Category2_2 = document.querySelector('.sidebarTravelChoice1Category2-2');
+        const sidebarTravelChoice1Category2_3 = document.querySelector('.sidebarTravelChoice1Category2-3');
+        
+        sidebarTravelChoice1Category1_4.style.color = 'white';
+        sidebarTravelChoice1Category1_4.style.backgroundColor = 'rgb(153, 188, 133)';
+        sidebarTravelChoice1Category1_4.style.borderRadius = '5px';
+
+        sidebarTravelChoice1Category1_2.style.color = 'black';
+        sidebarTravelChoice1Category1_2.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_3.style.color = 'black';
+        sidebarTravelChoice1Category1_3.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_1.style.color = 'black';
+        sidebarTravelChoice1Category1_1.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_1.style.color = 'black';
+        sidebarTravelChoice1Category2_1.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_2.style.color = 'black';
+        sidebarTravelChoice1Category2_2.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_3.style.color = 'black';
+        sidebarTravelChoice1Category2_3.style.backgroundColor = 'white';
+    }
+
+    const sidebarTravelChoice1Category2_1Color = ()=>{
+        const sidebarTravelChoice1Category1_1 = document.querySelector('.sidebarTravelChoice1Category1-1');
+        const sidebarTravelChoice1Category1_2 = document.querySelector('.sidebarTravelChoice1Category1-2');
+        const sidebarTravelChoice1Category1_3= document.querySelector('.sidebarTravelChoice1Category1-3');
+        const sidebarTravelChoice1Category1_4 = document.querySelector('.sidebarTravelChoice1Category1-4');
+        const sidebarTravelChoice1Category2_1 = document.querySelector('.sidebarTravelChoice1Category2-1');
+        const sidebarTravelChoice1Category2_2 = document.querySelector('.sidebarTravelChoice1Category2-2');
+        const sidebarTravelChoice1Category2_3 = document.querySelector('.sidebarTravelChoice1Category2-3');
+        
+        sidebarTravelChoice1Category2_1.style.color = 'white';
+        sidebarTravelChoice1Category2_1.style.backgroundColor = 'rgb(140, 192, 222)';
+        sidebarTravelChoice1Category2_1.style.borderRadius = '5px';
+
+        sidebarTravelChoice1Category1_2.style.color = 'black';
+        sidebarTravelChoice1Category1_2.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_3.style.color = 'black';
+        sidebarTravelChoice1Category1_3.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_4.style.color = 'black';
+        sidebarTravelChoice1Category1_4.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_1.style.color = 'black';
+        sidebarTravelChoice1Category1_1.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_2.style.color = 'black';
+        sidebarTravelChoice1Category2_2.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_3.style.color = 'black';
+        sidebarTravelChoice1Category2_3.style.backgroundColor = 'white';
+    }
+
+    const sidebarTravelChoice1Category2_2Color = ()=>{
+        const sidebarTravelChoice1Category1_1 = document.querySelector('.sidebarTravelChoice1Category1-1');
+        const sidebarTravelChoice1Category1_2 = document.querySelector('.sidebarTravelChoice1Category1-2');
+        const sidebarTravelChoice1Category1_3= document.querySelector('.sidebarTravelChoice1Category1-3');
+        const sidebarTravelChoice1Category1_4 = document.querySelector('.sidebarTravelChoice1Category1-4');
+        const sidebarTravelChoice1Category2_1 = document.querySelector('.sidebarTravelChoice1Category2-1');
+        const sidebarTravelChoice1Category2_2 = document.querySelector('.sidebarTravelChoice1Category2-2');
+        const sidebarTravelChoice1Category2_3 = document.querySelector('.sidebarTravelChoice1Category2-3');
+        
+        sidebarTravelChoice1Category2_2.style.color = 'white';
+        sidebarTravelChoice1Category2_2.style.backgroundColor = 'rgb(83, 113, 136)';
+        sidebarTravelChoice1Category2_2.style.borderRadius = '5px';
+
+        sidebarTravelChoice1Category1_2.style.color = 'black';
+        sidebarTravelChoice1Category1_2.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_3.style.color = 'black';
+        sidebarTravelChoice1Category1_3.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_4.style.color = 'black';
+        sidebarTravelChoice1Category1_4.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_1.style.color = 'black';
+        sidebarTravelChoice1Category2_1.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_1.style.color = 'black';
+        sidebarTravelChoice1Category1_1.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_3.style.color = 'black';
+        sidebarTravelChoice1Category2_3.style.backgroundColor = 'white';
+    }
+
+    const sidebarTravelChoice1Category2_3Color = ()=>{
+        const sidebarTravelChoice1Category1_1 = document.querySelector('.sidebarTravelChoice1Category1-1');
+        const sidebarTravelChoice1Category1_2 = document.querySelector('.sidebarTravelChoice1Category1-2');
+        const sidebarTravelChoice1Category1_3= document.querySelector('.sidebarTravelChoice1Category1-3');
+        const sidebarTravelChoice1Category1_4 = document.querySelector('.sidebarTravelChoice1Category1-4');
+        const sidebarTravelChoice1Category2_1 = document.querySelector('.sidebarTravelChoice1Category2-1');
+        const sidebarTravelChoice1Category2_2 = document.querySelector('.sidebarTravelChoice1Category2-2');
+        const sidebarTravelChoice1Category2_3 = document.querySelector('.sidebarTravelChoice1Category2-3');
+        
+        sidebarTravelChoice1Category2_3.style.color = 'white';
+        sidebarTravelChoice1Category2_3.style.backgroundColor = 'rgb(186, 144, 198)';
+        sidebarTravelChoice1Category2_3.style.borderRadius = '5px';
+
+        sidebarTravelChoice1Category1_2.style.color = 'black';
+        sidebarTravelChoice1Category1_2.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_3.style.color = 'black';
+        sidebarTravelChoice1Category1_3.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_4.style.color = 'black';
+        sidebarTravelChoice1Category1_4.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_1.style.color = 'black';
+        sidebarTravelChoice1Category2_1.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category2_2.style.color = 'black';
+        sidebarTravelChoice1Category2_2.style.backgroundColor = 'white';
+
+        sidebarTravelChoice1Category1_1.style.color = 'black';
+        sidebarTravelChoice1Category1_1.style.backgroundColor = 'white';
+    }
 
     return(
         <div className='sidebarTravel'>
@@ -194,9 +414,13 @@ function SidebarTravel() {
                 </div>:""
             }
             <div className='sidebarTravelChoiceX'>
-                <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width='50' height='50' opacity='0.8'>
-                    <path d="m23.263,10.237c.467.461.731,1.098.737,1.763-.002.658-.258,1.296-.721,1.766l-3.918,4.081c-.098.102-.229.153-.361.153-.125,0-.25-.046-.346-.14-.199-.19-.206-.508-.015-.707l3.923-4.086c.163-.165.283-.358.355-.567H.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h22.411c-.075-.208-.196-.398-.358-.558l-3.955-4.05c-.193-.197-.189-.514.009-.707.198-.192.514-.189.707.009l3.948,4.043Zm.737,1.763s0-.006,0,0h0Z"/>
-                </svg>
+                {isMobile?
+                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width='50' height='50'>
+                        <path d="m17.814,5.392c-.098.101-.228.151-.357.151-.126,0-.252-.047-.35-.142l-4.043-3.948c-.165-.167-.358-.288-.564-.362v22.409c0,.276-.224.5-.5.5s-.5-.224-.5-.5V1.083c-.205.071-.398.187-.563.35l-4.091,3.928c-.199.19-.517.187-.707-.015-.191-.199-.186-.516.014-.707L10.239.716c.473-.466,1.123-.716,1.761-.716.624.016,1.297.265,1.77.744l4.037,3.941c.197.193.201.51.008.707Z"/>
+                    </svg>: 
+                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width='50' height='50' opacity='0.8'>
+                        <path d="m23.263,10.237c.467.461.731,1.098.737,1.763-.002.658-.258,1.296-.721,1.766l-3.918,4.081c-.098.102-.229.153-.361.153-.125,0-.25-.046-.346-.14-.199-.19-.206-.508-.015-.707l3.923-4.086c.163-.165.283-.358.355-.567H.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h22.411c-.075-.208-.196-.398-.358-.558l-3.955-4.05c-.193-.197-.189-.514.009-.707.198-.192.514-.189.707.009l3.948,4.043Zm.737,1.763s0-.006,0,0h0Z"/>
+                    </svg>}
                 <p>지도에서 지역을 선택해주세요.</p>
             </div>
             <div className='sidebarTravelChoiceOWrapWrap'>
@@ -243,27 +467,27 @@ function SidebarTravel() {
                         <div className='sidebarTravelChoice1Category'>
                             <div className='sidebarTravelChoice1Category1'>
                                 <div className='sidebarTravelChoice1Category1-1'>
-                                    <p onClick={()=>{const cat = "자연관광지";tourcategory(cat)}}>자연관광지</p>
+                                    <p onClick={()=>{const cat = "자연관광지";tourcategory(cat);sidebarTravelChoice1Category1_1Color();}}>자연관광지</p>
                                 </div>
                                 <div className='sidebarTravelChoice1Category1-2'>
-                                    <p onClick={()=>{const cat = "역사관광지";tourcategory(cat)}}>역사관광지</p>
+                                    <p onClick={()=>{const cat = "역사관광지";tourcategory(cat);sidebarTravelChoice1Category1_2Color();}}>역사관광지</p>
                                 </div>
                                 <div className='sidebarTravelChoice1Category1-3'>
-                                    <p onClick={()=>{const cat = "체험관광지";tourcategory(cat)}}>체험관광지</p>
+                                    <p onClick={()=>{const cat = "체험관광지";tourcategory(cat);sidebarTravelChoice1Category1_3Color();}}>체험관광지</p>
                                 </div>
                                 <div className='sidebarTravelChoice1Category1-4'>
-                                    <p onClick={()=>{const cat = "산업관광지";tourcategory(cat)}}>산업관광지</p>
+                                    <p onClick={()=>{const cat = "산업관광지";tourcategory(cat);sidebarTravelChoice1Category1_4Color();}}>산업관광지</p>
                                 </div>
                             </div>
                             <div className='sidebarTravelChoice1Category2'>
                                 <div className='sidebarTravelChoice1Category2-1'>
-                                    <p onClick={()=>{const cat = "건축/조형물";tourcategory(cat)}}>건축/조형물</p>
+                                    <p onClick={()=>{const cat = "건축/조형물";tourcategory(cat);sidebarTravelChoice1Category2_1Color();}}>건축/조형물</p>
                                 </div>
                                 <div className='sidebarTravelChoice1Category2-2'>
-                                    <p onClick={()=>{const cat = "생활문화";tourcategory(cat)}}>생활문화</p>
+                                    <p onClick={()=>{const cat = "생활문화";tourcategory(cat);sidebarTravelChoice1Category2_2Color();}}>생활문화</p>
                                 </div>
                                 <div className='sidebarTravelChoice1Category2-3'>
-                                    <p onClick={()=>{const cat = "레포츠";tourcategory(cat)}}>레포츠</p>
+                                    <p onClick={()=>{const cat = "레포츠";tourcategory(cat);sidebarTravelChoice1Category2_3Color();}}>레포츠</p>
                                 </div>
                             </div>
                         </div>

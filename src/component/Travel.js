@@ -3,7 +3,6 @@ import '../css/travel.css';
 import { Map, MapMarker, Polygon, CustomOverlayMap } from "react-kakao-maps-sdk";
 import sig from '../json/sig.json';
 import { Context } from '../context/Context';
-import axios from 'axios';
 
 function Travel() {
     // polygon 그리기
@@ -25,15 +24,13 @@ function Travel() {
 
     const [fillColor, setFillColor] = useState([]);
 
-    const [congestionData, setCongestionData] = useState();
-
 
     //useContext를 이용해 sidebar에서 backend에서 통신한 값 받아오기 
-    const {setSigid,tourplace,festival,accommodation,sidebarclick,setSidebarClick,lst,setLst,setTourPlace,setFestival,setAccommodation,setInfoSidebarOpenClose,setSidebarTravelChoice,setLocationName,setLocationCongest,isMobile,setMobileSidebarButton} = useContext(Context);
+    const {setSigid,tourplace,festival,accommodation,sidebarclick,setSidebarClick,lst,setLst,setTourPlace,setFestival,setAccommodation,setInfoSidebarOpenClose,setSidebarTravelChoice,setLocationName,setLocationCongest,isMobile,setMobileSidebarButton,congestionData} = useContext(Context);
 
     // polygon 클릭시 확대하고 색깔 바꾸는 함수
-    const polygonClick = (index, e,c) => {
-        setLevel(10);
+    const polygonClick = (index, e,_) => {
+        setLevel(9);
         setMobileLevel(10);
         setPosition({ lat: e.latLng.Ma, lng: e.latLng.La });
         // 선택한 Polygon이 이미 선택되어 있는지 확인
@@ -64,11 +61,6 @@ function Travel() {
             setMobileSidebarButton(true);
         }
     }
-    
-
-    useEffect(() => {
-        congestion();
-    },[]);
 
     useEffect(() => {
         const features = sig.features;
@@ -145,29 +137,22 @@ function Travel() {
         setMarkers(newmarker)
     }
 
-    //혼잡도 데이터 가져오기
-    const congestion = () => {
-        axios.post('http://192.168.0.53:8080/congestion').then((res)=>{
-            setCongestionData(res.data)
-        })
-    }
-
     const getColor = (key) => {
         const data = congestionData && congestionData.find(item => item.loc_code === key);
         const congestionLevel = data && data.jam;
         // 혼잡도에 따라 색상 설정
         if (congestionLevel === 1) {
-            return "green";
+            return "rgb(140, 192, 222)";
         } else if (congestionLevel === 2) {
-            return "lightgreen";
+            return "rgb(153, 188, 133)";
         } else if (congestionLevel === 3) {
-            return "yellow";
+            return "rgb(243, 209, 121)";
         } else if (congestionLevel === 4) {
-            return "orange";
+            return "rgb(240, 152, 114)";
         } else if (congestionLevel === 5) {
-            return "red";
+            return "rgb(244, 96, 96)";
         } else {
-            return "#fff";
+            return "white";
         }
     };
 
@@ -187,7 +172,7 @@ function Travel() {
                     "93vh"
                 }}
                 level={isMobile?mobilelevel:level} // 지도의 확대 레벨
-                onZoomChanged={() => { setLevel();setMobileLevel(); }}
+                onZoomChanged={() => { setLevel();setMobileLevel();}}
             >
                 {markers}
 
@@ -198,17 +183,17 @@ function Travel() {
                         strokeWeight={0.5}
                         strokeColor="rgb(0, 0, 0, 0.5)"
                         strokeOpacity={0.8}
-                        fillColor={selectedPolygonIndex === index ? 'rgb(159, 187, 115)' : fillColor[index]} // 선택된 Polygon만 파란색
-                        fillOpacity={0.7}
+                        fillColor={fillColor[index]} // 선택된 Polygon만 파란색
+                        fillOpacity={selectedPolygonIndex === index ? 0.7 : 0.3}
                         onClick={(_,e) => polygonClick(index,e)}
                         onMouseover={(e) => {
                             if (selectedPolygonIndex !== index) {
-                                e.setOptions({ fillColor: 'rgb(159, 187, 115, 0.3)' });
+                                e.setOptions({ fillOpacity: '0.7' });
                             }
                         }}
                         onMouseout={(e) => {
                             if (selectedPolygonIndex !== index) {
-                                e.setOptions({ fillColor: fillColor[index] });
+                                e.setOptions({ fillOpacity: '0.3' });
                             }
                         }}
                     />
