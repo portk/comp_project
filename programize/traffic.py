@@ -17,8 +17,8 @@ class PredictTraffic:
         self.tomorrow = self.tomorrow.strftime("%Y%m%d")+"23"
         self.daytype = "weekday"
         
-        self.holi_service_key = 'uN2nb2kBp3pLCfoyPmKmg3OjzPQ8N4svZY%2FN5Ldot6GwqnLdB1KU45Rxu694MM7wpO8ZklYLXL35SBW4EFvYAg%3D%3D'
-        self.traffic_key = "3087699054"
+        self.holi_service_key = api1
+        self.traffic_key = api2
         self.conn = create_engine("mysql+pymysql://root:1234@localhost:3306/jeogi?charset=utf8")
 
     def requenstholiday(self):
