@@ -14,7 +14,7 @@ function SidebarTravel() {
     },[locationCongest])
 
     const tourdata = () => {
-        axios.post('http://218.157.13.140:8080/travelData', {
+        axios.post('http://192.168.0.53:8080/travelData', {
             sigid : sigid
         }).then((res)=>{
             setTourPlace(res.data)
@@ -22,7 +22,7 @@ function SidebarTravel() {
         })
     }
     const festivaldata = () => {
-        axios.post('http://218.157.13.140:8080/festivalData', {
+        axios.post('http://192.168.0.53:8080/festivalData', {
             sigid : sigid
         }).then((res)=>{
             setFestival(res.data)
@@ -31,7 +31,7 @@ function SidebarTravel() {
     }
 
     const accommodationdata = () => {
-        axios.post('http://218.157.13.140:8080/accommodationData', {
+        axios.post('http://192.168.0.53:8080/accommodationData', {
             sigid : sigid
         }).then((res)=>{
             setAccommodation(res.data)
@@ -41,7 +41,7 @@ function SidebarTravel() {
 
     const tourcategory = (cat) => {
         setInfoSidebarOpenClose();
-        axios.post('http://218.157.13.140:8080/tourCategory', {
+        axios.post('http://192.168.0.53:8080/tourCategory', {
             sigid : sigid,
             category : cat
         }).then((res) => {

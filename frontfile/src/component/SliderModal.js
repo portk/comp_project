@@ -12,7 +12,7 @@ function SliderModal() {
     },[timedata])
 
     const gettimedata = () => {
-        axios.post('http://218.157.13.140:8080/congestionChange',{
+        axios.post('http://192.168.0.53:8080/congestionChange',{
             time : timedata
         }).then((res)=>{
             setCongestionData(res.data)
