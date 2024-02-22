@@ -1,0 +1,2 @@
+출처 : 한국도로공사 고속도로 공공데이터포털의 영업소별 교통량
+         (https://data.ex.co.kr/portal/fdwn/view?type=TCS&num=34&requestfrom=dataset)
